@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sathick A.S — Mechanical Engineer Portfolio</title>
+<meta name="description" content="Portfolio of Sathick A.S — Mechanical Engineering student specializing in precision, thermal systems and design engineering.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0c0c0e;--card:#111114;--card2:#16161a;--line:rgba(255,255,255,0.06);--text:#e2e2e8;--text2:#9090a8;--text3:#5a5a72;--blue:#c8f0ff;--peach:#f4b8a0;--font:'Space Grotesk',sans-serif;--mono:'IBM Plex Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);cursor:none;overflow-x:hidden}
+canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.cursor-dot{position:fixed;width:6px;height:6px;background:var(--blue);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{position:fixed;width:28px;height:28px;border:1.5px solid rgba(200,240,255,0.3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .12s ease,top .12s ease}
+.wrap{max-width:min(1160px,92vw);margin:0 auto}
+section{padding:6rem 0;position:relative;z-index:1}
+.sec-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3.5rem}
+.sec-num{font-family:var(--mono);font-size:0.72rem;color:var(--blue);letter-spacing:0.12em}
+.sec-title{font-size:1.5rem;font-weight:600;white-space:nowrap}
+.sec-line{flex:1;height:1px;background:var(--line)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);z-index:100;display:flex;align-items:center;padding:0 2rem}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{font-family:var(--mono);font-size:0.85rem;text-decoration:none;color:var(--text)}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn-hire{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);border:1px solid rgba(200,240,255,0.22);padding:.45rem 1rem;border-radius:2px;text-decoration:none;transition:background .2s}
+.btn-hire:hover{background:rgba(200,240,255,0.07)}
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 4rem;padding-top:64px}
+.hero-inner{max-width:min(1160px,92vw);margin:0 auto;width:100%}
+.hero-eyebrow{display:flex;align-items:center;gap:1rem;font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--blue);margin-bottom:1.5rem}
+.hero-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--blue)}
+.hero-name{font-size:clamp(3.2rem,7vw,6.4rem);font-weight:700;line-height:1.05}
+.hero-name .dim{color:var(--text3)}
+.hero-sub{font-size:1.1rem;font-weight:300;color:var(--text2);margin-top:1rem}
+.hero-bio{max-width:520px;color:var(--text2);line-height:1.75;margin-top:1.2rem;font-size:0.95rem}
+.hero-ctas{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.btn-primary{background:var(--text);color:var(--bg);padding:.7rem 1.6rem;border-radius:3px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:background .2s,color .2s;border:none;cursor:none}
+.btn-primary:hover{background:var(--blue)}
+.btn-ghost{border:1px solid rgba(255,255,255,0.18);color:var(--text);padding:.7rem 1.6rem;border-radius:3px;text-decoration:none;font-size:0.9rem;transition:border-color .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4)}
+.hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);flex-wrap:wrap}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--blue)}
+.stat-label{font-size:0.78rem;color:var(--text3);margin-top:.2rem}
+#skills .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem}
+.skill-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.skill-name{font-family:var(--mono);font-size:0.78rem;color:var(--text2);min-width:165px}
+.skill-track{flex:1;height:2px;background:#1c1c21;border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(to right,var(--peach),var(--blue));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.pill{font-family:var(--mono);font-size:0.72rem;padding:.3rem .8rem;border:1px solid rgba(255,255,255,0.12);border-radius:20px;color:var(--text2);transition:border-color .2s}
+.pill:hover{border-color:rgba(255,255,255,0.3)}
+.pill.cert{border-color:rgba(200,240,255,0.25);color:var(--blue)}
+.right-col h3{font-size:0.72rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:1rem}
+#projects{border-top:1px solid var(--line)}
+.filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.filter-btn{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;padding:.4rem 1rem;border:1px solid var(--line);border-radius:20px;background:none;color:var(--text3);cursor:none;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{border-color:rgba(200,240,255,0.4);color:var(--blue);background:rgba(200,240,255,0.05)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+.proj-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);cursor:none;transition:background .2s;position:relative}
+.proj-card:nth-child(3n){border-right:none}
+.proj-card img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:brightness(.65) saturate(.7);transition:filter .3s,transform .3s;display:block}
+.proj-card:hover img{filter:brightness(.85) saturate(.9);transform:scale(1.04)}
+.proj-body{padding:1.2rem}
+.proj-cat{font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--peach);margin-bottom:.5rem}
+.proj-title{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.proj-desc{font-size:0.83rem;color:var(--text2);line-height:1.6;margin-bottom:.8rem}
+.proj-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.8rem}
+.proj-tag{font-family:var(--mono);font-size:0.6rem;padding:.2rem .55rem;border:1px solid var(--line);border-radius:20px;color:var(--text3)}
+.proj-arrow{font-size:1rem;color:var(--text3);transition:transform .2s,color .2s;display:inline-block}
+.proj-card:hover .proj-arrow{transform:translate(3px,-3px);color:var(--blue)}
+.drawer-overlay{position:fixed;inset:0;background:rgba(6,6,8,0);backdrop-filter:blur(0);z-index:200;pointer-events:none;transition:background .3s,backdrop-filter .3s}
+.drawer-overlay.open{background:rgba(6,6,8,0.9);backdrop-filter:blur(14px);pointer-events:all}
+.drawer{position:fixed;top:0;right:0;width:min(680px,95vw);height:100vh;background:var(--card);border-left:1px solid var(--line);z-index:201;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);overflow-y:auto}
+.drawer.open{transform:translateX(0)}
+.drawer-top{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;z-index:1}
+.drawer-cat{font-family:var(--mono);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--peach)}
+.drawer-close{background:none;border:1px solid var(--line);color:var(--text2);padding:.3rem .8rem;border-radius:2px;cursor:none;font-family:var(--mono);font-size:0.72rem;transition:border-color .2s}
+.drawer-close:hover{border-color:rgba(255,255,255,0.3)}
+.drawer-content{padding:2rem 1.5rem}
+.drawer-content img{width:100%;border-radius:4px;margin:1rem 0;filter:brightness(.8);transition:filter .3s}
+.drawer-content img:hover{filter:brightness(1)}
+.drawer-content h2{font-size:1.3rem;font-weight:600;margin-bottom:1.5rem}
+.drawer-content h3{font-size:0.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin:1.5rem 0 .7rem}
+.drawer-content p,.drawer-content li{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:.5rem}
+.drawer-content ul{padding-left:1.2rem}
+#achievements{border-top:1px solid var(--line)}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem}
+.ach-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s}
+.ach-card:hover{border-color:rgba(255,255,255,0.15)}
+.ach-badge{font-size:1.5rem;margin-bottom:.4rem;display:block}
+.ach-card-body{padding:.8rem}
+.ach-event{font-size:0.88rem;font-weight:600;margin-bottom:.3rem}
+.ach-desc{font-size:0.75rem;color:var(--text3);line-height:1.5}
+.ach-img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
+.cert-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s}
+.cert-card:hover{border-color:rgba(255,255,255,0.15)}
+.cert-card img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none;display:block}
+.cert-info{padding:.7rem}
+.cert-title{font-size:0.82rem;font-weight:600;margin-bottom:.2rem}
+.cert-issuer{font-size:0.72rem;color:var(--text3);font-family:var(--mono)}
+.workshop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
+.ws-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ws-card img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none}
+.ws-card-body{padding:.7rem;font-size:0.8rem;font-weight:600}
+.memb-card{display:inline-flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:1rem}
+.memb-card img{width:80px;height:60px;object-fit:cover}
+.memb-card-text{padding:.6rem 1rem;font-size:0.82rem;font-weight:600}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:500;display:none;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:4px}
+#experience{border-top:1px solid var(--line)}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line)}
+.tl-item{position:relative;padding-left:2rem;margin-bottom:2.5rem}
+.tl-dot{position:absolute;left:-4px;top:.4rem;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.tl-date{font-family:var(--mono);font-size:0.7rem;color:var(--text3);margin-bottom:.4rem}
+.tl-org{font-size:1rem;font-weight:600;margin-bottom:.15rem}
+.tl-role{font-size:0.82rem;color:var(--peach);font-style:italic;margin-bottom:.5rem}
+.tl-desc{font-size:0.83rem;color:var(--text2);line-height:1.7}
+.tl-badges{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.tl-badge{font-family:var(--mono);font-size:0.65rem;padding:.25rem .65rem;border:1px solid var(--line);border-radius:20px;color:var(--text3)}
+#contact{border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.contact-heading{font-size:1.4rem;font-weight:600;line-height:1.4;margin-bottom:1rem}
+.contact-para{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:1.5rem}
+.contact-links{display:flex;flex-direction:column;gap:.7rem}
+.contact-link{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;border:1px solid var(--line);border-radius:4px;text-decoration:none;color:var(--text2);transition:border-color .2s,color .2s;font-size:0.88rem}
+.contact-link:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+.contact-link .icon{font-size:1rem;width:1.5rem;text-align:center}
+footer{border-top:1px solid var(--line);padding:2rem 0;position:relative;z-index:1}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.08em}
+.sub-head{font-size:1rem;font-weight:600;margin-bottom:1.5rem;color:var(--text)}
+@media(max-width:900px){
+  .nav-links{display:none}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
+  .ach-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
+  #hero{padding:0 2rem;padding-top:64px}
+}
+@media(max-width:560px){
+  .proj-grid{grid-template-columns:1fr}
+  .ach-grid,.cert-grid,.workshop-grid{grid-template-columns:1fr}
+  .hero-stats{gap:1.5rem}
+  .btn-hire{display:none}
+}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <div class="nav-inner wrap">
+    <a href="#" class="nav-logo"><span>SAS</span> / Portfolio</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-hire">Hire Me</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Mechanical Engineer &middot; Chennai, India</div>
+    <div class="hero-name">Sathick<br><span class="dim">A.S</span></div>
+    <div class="hero-sub">Precision &middot; Thermal Systems &middot; Design Engineering</div>
+    <p class="hero-bio">"Curious Mechanical Engineer driven by precision, mastering flows, thermal systems, and design thinking to craft innovative solutions across multidisciplinary engineering fields."</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">9.22</div><div class="stat-label">CGPA &middot; 5th Sem</div></div>
+      <div><div class="stat-num">8+</div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num">HMIL</div><div class="stat-label">Hyundai Intern</div></div>
+      <div><div class="stat-num">2&times;</div><div class="stat-label">Certified</div></div>
+    </div>
+  </div>
+</section>
+<section id="skills" class="reveal">
+  <div class="wrap">
+    <div class="sec-header">
+      <span class="sec-num">01 /</span>
+      <span class="sec-title">Skills &amp; Expertise</span>
+      <div class="sec-line"></div>
+    </div>
+    <div class="grid">
+      <div class="left-col">
+        <p class="sub-head">Technical Skills</p>
+        <div class="skill-row"><span class="skill-name">AutoCAD</span><div class="skill-track"><div class="skill-fill" data-w="92"></div></div></div>
+        <div class="skill-row"><span class="skill-name">CREO Parametric</span><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
+        <div class="skill-row"><span class="skill-name">MATLAB</span><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+        <div class="skill-row"><span class="skill-name">MS Office Suite</span><div class="skill-track"><div class="skill-fill" data-w="96"></div></div></div>
+        <div class="skill-row"><span class="skill-name">ANSYS (FEA)</span><div class="skill-track"><div class="skill-fill" data-w="62"></div></div></div>
+        <div class="skill-row"><span class="skill-name">GD&amp;T</span><div class="skill-track"><div class="skill-fill" data-w="58"></div></div></div>
+        <div class="skill-row"><span class="skill-name">3D Printing</span><div class="skill-track"><div class="skill-fill" data-w="58"></div></div></div>
+        <div class="skill-row"><span class="skill-name">SolidWorks</span><div class="skill-track"><div class="skill-fill" data-w="38"></div></div></div>
+        <div class="skill-row"><span class="skill-name">CFD Analysis</span><div class="skill-track"><div class="skill-fill" data-w="28"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Arduino / Embedded</span><div class="skill-track"><div class="skill-fill" data-w="36"></div></div></div>
+      </div>
+      <div class="right-col">
+        <h3>Soft Skills</h3>
+        <div class="pills">
+          <span class="pill">Leadership</span><span class="pill">Critical Thinking</span><span class="pill">Problem Solving</span>
+          <span class="pill">Time Management</span><span class="pill">Presentation</span><span class="pill">Communication</span>
+          <span class="pill">Design Thinking</span><span class="pill">Team Collaboration</span><span class="pill">Research &amp; Analysis</span>
+          <span class="pill">Data-Driven Decisions</span>
+        </div>
+        <h3>Certifications</h3>
+        <div class="pills">
+          <span class="pill cert">AutoCAD Certified</span>
+          <span class="pill cert">MATLAB Certified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects" class="reveal">
+  <div class="wrap">
+    <div class="sec-header">
+      <span class="sec-num">02 /</span>
+      <span class="sec-title">Projects</span>
+      <div class="sec-line"></div>
+    </div>
+    
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="pbl">PBL</button>
+      <button class="filter-btn" data-filter="hobby">Hobby / Innovation</button>
+      <button class="filter-btn" data-filter="internship">Internship</button>
+      <button class="filter-btn" data-filter="competition">Competition</button>
+      <button class="filter-btn" data-filter="business">Business</button>
+    </div>
+
+    <div class="proj-grid">
+      <!-- Proj 1 -->
+      <div class="proj-card" data-cat="pbl" onclick="openDrawer('proj1')">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Smart Door" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Project-Based Learning &middot; MED3102</div>
+          <h3 class="proj-title">Smart Automatic Door Closer &amp; Locker System</h3>
+          <p class="proj-desc">Microcontroller-based door automation enabling hands-free operation via push-button or mobile command — designed for accessibility in compact environments.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Arduino Uno</span><span class="proj-tag">ESP32</span><span class="proj-tag">Servo Motor</span><span class="proj-tag">Bluetooth</span><span class="proj-tag">Reed Switch</span><span class="proj-tag">Mechatronics</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 2 -->
+      <div class="proj-card" data-cat="pbl" onclick="openDrawer('proj2')">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80" alt="USA Principle" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Project-Based Learning &middot; MED3103</div>
+          <h3 class="proj-title">Automated Door System using USA Principle</h3>
+          <p class="proj-desc">Applied Understand–Simplify–Automate methodology to design an intelligent automation solution for manufacturing-inspired environments.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">USA Principle</span><span class="proj-tag">Automation</span><span class="proj-tag">Arduino</span><span class="proj-tag">Sensors</span><span class="proj-tag">Actuators</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 3 -->
+      <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj3')">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Wind Turbine" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Hobby Innovation &middot; Renewable Energy</div>
+          <h3 class="proj-title">Bladeless Wind Turbine Prototype</h3>
+          <p class="proj-desc">Tesla-inspired prototype using vortex shedding and drag force — built from repurposed materials for domestic rooftop energy generation.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Vortex Shedding</span><span class="proj-tag">Drag Force</span><span class="proj-tag">Fluid Dynamics</span><span class="proj-tag">Tesla Turbine</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 4 -->
+      <div class="proj-card" data-cat="business" onclick="openDrawer('proj4')">
+        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=80" alt="RideFar" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Business-Based Project &middot; Pitch Deck</div>
+          <h3 class="proj-title">RideFar — EV Mobility Startup Pitch</h3>
+          <p class="proj-desc">Developed a full startup pitch deck for RideFar — an electric vehicle mobility solution targeting underserved urban commuter segments.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">EV Mobility</span><span class="proj-tag">Business Model</span><span class="proj-tag">Pitch Deck</span><span class="proj-tag">Go-to-Market</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 5 -->
+      <div class="proj-card" data-cat="internship" onclick="openDrawer('proj5')">
+        <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=700&q=80" alt="Hyundai HMIL" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Industrial Internship &middot; Hyundai Motor</div>
+          <h3 class="proj-title">Worker Ergonomics Improvement at HMIL</h3>
+          <p class="proj-desc">Applied Six Sigma DMAIC and REBA assessment tool at HMIL Assembly Shop #2 to identify and reduce musculoskeletal fatigue.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">REBA Tool</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Biomechanics</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 6 -->
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=700&q=80" alt="Mars Rover" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
+          <h3 class="proj-title">M.A.R.S Hackathon (Lunar Rover Design)</h3>
+          <p class="proj-desc">Designed and modelled a Mars/lunar terrain rover, applying terrain-to-STL conversion, MATLAB analysis, and structural assembly design.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Lunar Rover</span><span class="proj-tag">Terrain Analysis</span><span class="proj-tag">MATLAB</span><span class="proj-tag">STL Modelling</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 7 -->
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj7')">
+        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80" alt="Smart Grid" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competing Project &middot; SIH 2025</div>
+          <h3 class="proj-title">SIH 2025 — Voltex Smart Grid Idea</h3>
+          <p class="proj-desc">Presented "Voltex" — a smart energy grid management concept — covering renewable integration, demand response, and real-time load balancing.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Smart Grid</span><span class="proj-tag">Energy Management</span><span class="proj-tag">SIH 2025</span><span class="proj-tag">Innovation</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="achievements" class="reveal">
+  <div class="wrap">
+    <div class="sec-header">
+      <span class="sec-num">03 /</span>
+      <span class="sec-title">Achievements &amp; Certificates</span>
+      <div class="sec-line"></div>
+    </div>
+    
+    <div class="sub-head">Competition Wins</div>
+    <div class="ach-grid">
+      <!-- Cards with real Drive thumbnails -->
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1J5kZujo6SfVaKttANorCBiwzhMpRUKzX&sz=w800" alt="Model Mania 1st" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥇 1st Place</span>
+          <div class="ach-event">Model Mania</div>
+          <div class="ach-desc">CAD modelling competition — top rank in precision 3D modelling challenge</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1bBO97uWuq9mQuRGOXsCnYn3V7CNCLO2B&sz=w800" alt="Bridge Building" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥇 1st Place</span>
+          <div class="ach-event">Bridge Building</div>
+          <div class="ach-desc">Structural design competition — won for optimal load-bearing bridge design</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1sOmkX-EL9aQIbbXlJm9Z5s-bLZCj5uFH&sz=w800" alt="Bridge IT" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥇 1st Place</span>
+          <div class="ach-event">Bridge IT</div>
+          <div class="ach-desc">Engineering innovation bridge challenge — 1st place for design and execution</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=127V7Laz9NA4oZBbkyjdd5OVHu6VTs8Ri&sz=w800" alt="HoverCraft Racing" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥇 1st Place</span>
+          <div class="ach-event">HoverCraft Racing</div>
+          <div class="ach-desc">Built and raced a functional hovercraft — 1st place in speed and stability</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1_GxJKfooefkyydOmh8DYvFqACnM96MP3&sz=w800" alt="GreenShift Quiz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥇 1st Place</span>
+          <div class="ach-event">GreenShift Quiz</div>
+          <div class="ach-desc">Sustainability and green engineering knowledge quiz — 1st place</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1T4IoTHMzytihrC6_J1Ifsr__QU3S4bcF&sz=w800" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥈 2nd Place</span>
+          <div class="ach-event">M.A.R.S Hackathon</div>
+          <div class="ach-desc">Lunar rover design hackathon — 2nd place (Team Beyonders)</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1uhZWpCL6n8TM7EJpjiVWQgcoDMXtfgbv&sz=w800" alt="Short Film" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥈 2nd Place</span>
+          <div class="ach-event">Short Film Recyclathon</div>
+          <div class="ach-desc">Environmental awareness short film competition — 2nd place</div>
+        </div>
+      </div>
+      <div class="ach-card">
+        <img src="https://drive.google.com/thumbnail?id=1XCG_LD6lyv5cu1O9-CEWwlD8eMuUWktH&sz=w800" alt="Lathe Wizz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="ach-card-body">
+          <span class="ach-badge">🥉 3rd Place</span>
+          <div class="ach-event">Lathe Wizz</div>
+          <div class="ach-desc">Lathe machining skill competition — 3rd place</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-head">Certifications &amp; Internships</div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">Internship at Hyundai Motor India Ltd.</div><div class="cert-issuer">HMIL</div></div>
+      </div>
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1E2Nz12iKLPBOYuzl8iNUbPbSYj4-d9XU&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">AutoCAD &amp; MATLAB Internship</div><div class="cert-issuer">RINEX Education</div></div>
+      </div>
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1PHOijYZPICmDBG_wiCcBxqpuR2Ir6UU3&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">AutoCAD + Self-Paced MATLAB Course</div><div class="cert-issuer">RINEX Education</div></div>
+      </div>
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1DiuvstyfsaGuRD39zMy0p9wmGELSKDzK&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">MATLAB Onramp Course Completion</div><div class="cert-issuer">MathWorks</div></div>
+      </div>
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">Entrepreneurship Skills Completion</div><div class="cert-issuer">Online Course</div></div>
+      </div>
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
+      </div>
+    </div>
+
+    <div class="sub-head">Workshops &amp; Memberships</div>
+    <div class="workshop-grid">
+      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=12aLlTAfvvVFR0A0Lyz-R9HzgrILZW_m9&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">AeroModelling Workshop</div></div>
+      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=1mJa1N8pTJGeKdOU7mAh5g3_i0_KiIOqP&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">Eco-Talk Recyclathon Participation</div></div>
+      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=1GdrSpg03HJAuY1e5gX8f1J0s3WApOMPE&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">MechGust CAD Participation</div></div>
+    </div>
+    
+    <div class="memb-card">
+      <img src="https://drive.google.com/thumbnail?id=1NQw5OSb9I2O_bKi6DdAQFtuy-V7e8DJ6&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+      <div class="memb-card-text">ISHRAE Student Membership</div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="reveal">
+  <div class="wrap">
+    <div class="sec-header">
+      <span class="sec-num">04 /</span>
+      <span class="sec-title">Experience &amp; Education</span>
+      <div class="sec-line"></div>
+    </div>
+    
+    <div class="exp-grid">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jun–Jul 2025</div>
+          <div class="tl-org">Hyundai Motor India Limited (HMIL)</div>
+          <div class="tl-role">Engineering Intern — Assembly Shop #2</div>
+          <p class="tl-desc">17-day internship. Applied DMAIC and REBA ergonomics tools to analyse musculoskeletal fatigue across TRIM, CHASSIS and FINAL assembly lines. Proposed adjustable work platform and torque arm solutions, predicted REBA score reduction from 9 → 4–5. Also observed Kappa petrol and diesel engine assembly in Engine Shop #2.</p>
+          <div class="tl-badges"><span class="tl-badge">Assembly</span><span class="tl-badge">Ergonomics</span><span class="tl-badge">Six Sigma</span></div>
+        </div>
+        
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">[Online — 2024]</div>
+          <div class="tl-org">Skyline Space Technology</div>
+          <div class="tl-role">CubeSats &amp; Satellites Internship</div>
+          <p class="tl-desc">Online internship covering fundamentals of CubeSat design, orbital mechanics, satellite subsystems and space mission planning.</p>
+          <div class="tl-badges"><span class="tl-badge">Aerospace</span><span class="tl-badge">Satellites</span></div>
+        </div>
+        
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">[Online — 2024]</div>
+          <div class="tl-org">RINEX Education</div>
+          <div class="tl-role">AutoCAD &amp; MATLAB Internship</div>
+          <p class="tl-desc">Completed structured internship covering AutoCAD 2D/3D drafting workflows and MATLAB programming fundamentals — both resulting in certifications.</p>
+          <div class="tl-badges"><span class="tl-badge">AutoCAD</span><span class="tl-badge">MATLAB</span><span class="tl-badge">Certified</span></div>
+        </div>
+      </div>
+      
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2023 – Present</div>
+          <div class="tl-org">BSA Crescent Institute of Science &amp; Technology</div>
+          <div class="tl-role">B.E. Mechanical Engineering</div>
+          <p class="tl-desc">Strong academic record with active involvement in project-based learning, technical competitions, and innovation challenges. Coursework spans fluid mechanics, thermal systems, CAD/CAM, mechatronics, manufacturing processes and industrial engineering.</p>
+          <div class="tl-badges"><span class="tl-badge">CGPA 9.22</span><span class="tl-badge">5th Semester</span></div>
+        </div>
+        
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">2021 – 2023</div>
+          <div class="tl-org">St. Joseph's Higher Secondary School, Cuddalore</div>
+          <div class="tl-role">Higher Secondary Education (12th Grade)</div>
+          <p class="tl-desc">Completed HSC with strong performance in Physics, Chemistry and Mathematics — forming the quantitative and analytical foundation for engineering studies.</p>
+          <div class="tl-badges"><span class="tl-badge">87.5%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="contact" class="reveal">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <h2 class="contact-heading">Open to opportunities,<br>collaborations &amp; new challenges.</h2>
+        <p class="contact-para">Whether you're exploring an internship, a research collaboration, or a challenging engineering project — I'm always interested in connecting with people building meaningful things.</p>
+        <a href="mailto:iamsadhik2005@gmail.com" class="btn-primary">Say Hello &rarr;</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:iamsadhik2005@gmail.com" class="contact-link"><span class="icon">✉</span>Email &rarr; iamsadhik2005@gmail.com</a>
+        <a href="tel:+916381032845" class="contact-link"><span class="icon">↗</span>Phone &rarr; +91 63810 32845</a>
+        <a href="https://linkedin.com/in/sathick-subhan" target="_blank" class="contact-link"><span class="icon">in</span>LinkedIn &rarr; linkedin.com/in/sathick-subhan</a>
+        <div class="contact-link"><span class="icon">◎</span>Location &rarr; Tamil Nadu, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>&copy; 2025 Sathick A.S</span>
+    <span>Mechanical Engineer &middot; BSA Crescent Institute</span>
+    <span>Chennai, India</span>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <img src="" alt="Certificate" id="lb-img">
+</div>
+
+<!-- Drawer Overlay & Drawer -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-top">
+    <div class="drawer-cat" id="d-cat"></div>
+    <button class="drawer-close" onclick="closeDrawer()">Close &times;</button>
+  </div>
+  <div class="drawer-content" id="d-content">
+  </div>
+</div>
+
+<script>
+// Project Data
+const projects = {
+  proj1: {
+    cat: 'Project-Based Learning &middot; MED3102 Mechatronics',
+    content: `
+      <h2>Smart Automatic Door Closer & Locker System</h2>
+      <h3>Overview</h3>
+      <p>A compact microcontroller-based system designed to enhance convenience, safety, and independence for children, elderly individuals, and wheelchair users who struggle with manually operating doors. Allows users to close and lock doors effortlessly via push-button or mobile phone command — reducing physical strain in homes, hospitals, and public facilities.</p>
+      <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=700&q=80" alt="Arduino">
+      <h3>System Architecture</h3>
+      <p>[Button / Mobile App] &rarr; [Microcontroller (Arduino/ESP32)] &rarr; [Motor Driver] &rarr; [Servo/Solenoid] &rarr; [Locking Mechanism]. Reed Switch or IR Sensor checks door state before triggering actuation sequence.</p>
+      <h3>Key Components</h3>
+      <ul>
+        <li>Microcontroller: Arduino Uno / ESP32 (built-in Wi-Fi + Bluetooth)</li>
+        <li>Sensors: Push Button &middot; Magnetic Reed Switch / IR Sensor</li>
+        <li>Actuators: Servo Motor / Linear Actuator / Solenoid Lock</li>
+        <li>Communication: Bluetooth HC-05 / ESP32 Wi-Fi</li>
+      </ul>
+      <h3>Working Logic</h3>
+      <p>On receiving input (button press or Bluetooth serial command "C"), Arduino checks door state via sensor. If open, activates motor for ~1.5s to close, then triggers solenoid lock to engage. Full logic implemented in Arduino C with serial Bluetooth communication.</p>
+      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80" alt="Circuit">
+      <h3>Limitations & Improvements</h3>
+      <ul>
+        <li>Servo torque insufficient for heavy doors &rarr; upgrade to linear actuator</li>
+        <li>Bluetooth limited to ~10m range &rarr; upgrade to ESP32 Wi-Fi</li>
+        <li>Sensor misalignment in dusty conditions &rarr; add closed-loop encoder feedback</li>
+        <li>Power dependency &rarr; integrate battery backup module</li>
+      </ul>
+    `
+  },
+  proj2: {
+    cat: 'Project-Based Learning &middot; MED3103 Automation in Manufacturing',
+    content: `
+      <h2>Automated Door System using USA Principle</h2>
+      <h3>Overview</h3>
+      <p>Design and implementation of an automation system formally structured around the USA Principle (Understand, Simplify, Automate) — applied to the real-world challenge of manual door operation in compact or high-traffic settings.</p>
+      <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=700&q=80" alt="Robotics">
+      <h3>USA Principle Breakdown</h3>
+      <ul>
+        <li><strong>Understand:</strong> Manual door closing is physically demanding and inaccessible for mobility-limited users in compact spaces</li>
+        <li><strong>Simplify:</strong> Reduced interaction to a single-button interface with optional mobile control, removing physical effort entirely</li>
+        <li><strong>Automate:</strong> Microcontroller logic with sensor-actuator feedback closes and locks the door without human involvement</li>
+      </ul>
+      <h3>System Design</h3>
+      <p>Same hardware platform as MED3102 (Arduino Uno/ESP32, Reed Switch, Servo/Solenoid), with the added layer of formal USA methodology documentation including block diagram, component justification, and control logic explanation.</p>
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80" alt="Components">
+      <h3>Outcome</h3>
+      <p>Demonstrated a closed-loop automated system: input detection &rarr; sensor validation &rarr; actuator trigger &rarr; lock engagement. Limitations and proposed closed-loop upgrades fully documented as part of the automation methodology.</p>
+    `
+  },
+  proj3: {
+    cat: 'Hobby Innovation &middot; Renewable Energy &middot; MEDX37',
+    content: `
+      <h2>Bladeless Wind Turbine Prototype</h2>
+      <h3>Concept & Inspiration</h3>
+      <p>Inspired by Nikola Tesla's bladeless turbine design, this prototype harnesses wind energy through aerodynamic flow and vortex shedding. Built using a "best out of waste" approach — repurposed CDs, foam sheet casing, plastic shaft — making it low-cost and adaptable for domestic rooftop installation.</p>
+      <img src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=700&q=80" alt="Turbine">
+      <h3>Design Features</h3>
+      <ul>
+        <li>Enlarged inlet port: captures low-velocity urban winds more efficiently</li>
+        <li>Aerodynamic shell: auto-aligns with wind direction for maximum intake</li>
+        <li>5 repurposed CD discs: interact with wind forces via drag and vortex shedding &rarr; converted to electricity via coil-magnet induction</li>
+        <li>Modular design: 10–20 units in-line on a terrace can produce 75–150W (enough for lighting or device charging)</li>
+      </ul>
+      <h3>Technical Analysis</h3>
+      <p>Power formula: P = &frac12;&rho;Av&sup3;. At v = 5 m/s with 0.5 m&sup2; inlet area, meaningful supplemental power is achievable per unit. Practical efficiency: ~20–30% (Tesla theorised 89–95% at 10k–50k RPM — impractical at domestic breeze speeds). Testing ongoing with LED/battery output measurement.</p>
+      <img src="https://images.unsplash.com/photo-1524522173746-f628baad3644?w=700&q=80" alt="Energy">
+      <h3>Future Development</h3>
+      <ul>
+        <li>Replace CDs with 3D-printed lightweight composite discs</li>
+        <li>Use BLDC generator to minimise shaft load and kinetic losses</li>
+        <li>Weatherproof housing to prevent water ingress</li>
+        <li>Integrate with rooftop solar panels &rarr; hybrid domestic renewable system</li>
+      </ul>
+    `
+  },
+  proj4: {
+    cat: 'Business-Based Project &middot; Startup Pitch Deck',
+    content: `
+      <h2>RideFar — EV Mobility Startup Pitch</h2>
+      <h3>Overview</h3>
+      <p>RideFar is an EV-based mobility startup concept pitched as a business-based project. The pitch deck covers market opportunity, product positioning, business model canvas, revenue streams, competitive analysis, and go-to-market strategy — combining mechanical engineering product knowledge with entrepreneurial thinking.</p>
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="EV Pitch">
+      <h3>Scope of Work</h3>
+      <ul>
+        <li>Market analysis: urban mobility pain points, EV adoption curves, target commuter segments</li>
+        <li>Product design rationale: range, charging infrastructure, vehicle spec trade-offs</li>
+        <li>Business model: subscription vs pay-per-ride, B2B fleet partnerships</li>
+        <li>Financial projections: unit economics, capex/opex, break-even timeline</li>
+        <li>Go-to-market: pilot city selection, launch strategy, growth levers</li>
+      </ul>
+      <h3>Outcome</h3>
+      <p>A structured, investor-style pitch deck demonstrating the ability to communicate complex technical-commercial trade-offs to both engineering and non-engineering stakeholders.</p>
+      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80" alt="Business">
+    `
+  },
+  proj5: {
+    cat: 'Industrial Internship &middot; Hyundai Motor India Ltd.',
+    content: `
+      <h2>Worker Ergonomics Improvement at HMIL</h2>
+      <h3>Organisation</h3>
+      <p>Hyundai Motor India Limited (HMIL) is India's second largest automobile manufacturer. Chennai plant: ~8 lakh cars/year, exports to 150+ countries. Assembly Shop #2 produces Grand i10 NIOS, i20, CRETA, VERNA and EXTER at 66 UPH (one car every 54–56 seconds).</p>
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80" alt="Manufacturing">
+      <h3>Internship Details</h3>
+      <p>Duration: 23 Jun – 09 Jul 2025 (17 days). Department: Assembly Shop #2. Observed full workflow: TRIM 1&2, ENGINE SUB, CHASSIS 1&2, DOOR SUB, FINAL 1&2, OK 1&2, TEST LINE, REPAIR, FIL. Final day: Engine Shop #2 — Kappa petrol and diesel engine assembly.</p>
+      <h3>DMAIC Application</h3>
+      <ul>
+        <li><strong>Define:</strong> Musculoskeletal fatigue among Assembly Shop #2 workers due to repetitive tasks and awkward postures — directly impacting efficiency and UPH productivity</li>
+        <li><strong>Measure:</strong> REBA tool applied at TRIM 1, CHASSIS 1 and FINAL 1 — scoring neck, trunk, legs (Group A) and arms, wrists (Group B). Target: TRIM 1 Station 12 (Roof Liner Wiring Harness Fixing) — REBA Score 9 (High Risk)</li>
+        <li><strong>Analyse:</strong> Root cause — poor alignment between car body height and worker posture forcing sustained overhead reach, kneeling and trunk rotation. Fast UPH pace (66/hr) compounds ergonomic risk</li>
+        <li><strong>Improve:</strong> (1) Height-adjustable platform bringing worker CG closer to roof level. (2) Articulating torque arm absorbing reaction force, reducing wrist/shoulder strain. Predicted REBA score reduction: 9 &rarr; 4–5 (Medium Risk)</li>
+        <li><strong>Control:</strong> New SOPs for platform and tooling use. Quarterly REBA re-assessment plan. App-based monitoring for sustained compliance</li>
+      </ul>
+      <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=700&q=80" alt="Ergonomics">
+      <h3>Engineering Concepts Applied</h3>
+      <p>Industrial Ergonomics (REBA) &middot; Six Sigma DMAIC &middot; Biomechanics &middot; Human Factors Engineering &middot; Process Flow Analysis</p>
+    `
+  },
+  proj6: {
+    cat: 'Competing Project &middot; M.A.R.S Hackathon — 2nd Place 🥈',
+    content: `
+      <h2>M.A.R.S Hackathon (Lunar Rover Design)</h2>
+      <h3>Overview</h3>
+      <p>Participated in the M.A.R.S (Mechanical Aerospace Robotics Systems) Hackathon — a competitive event requiring teams to design, model and present a functional lunar/Mars rover concept within a fixed timeline. The team "Beyonders" secured 2nd place.</p>
+      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80" alt="Space">
+      <h3>Technical Work</h3>
+      <ul>
+        <li>Converted real DTM (Digital Terrain Model) lunar/Mars surface data to STL files using a custom Python script (dtm_to_stl.py) for terrain-accurate modelling</li>
+        <li>Modelled rover structural parts (PART folder) and full assembly (ASSY folder) using CAD tools</li>
+        <li>Performed terrain analysis using MATLAB — analysing slope gradients, surface roughness, and traversability indices for a 10km &times; 10km lunar sector</li>
+        <li>Evaluated interior rover layout for electronics, power systems and payload modules</li>
+      </ul>
+      <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=700&q=80" alt="Rover">
+      <h3>Outcome</h3>
+      <p>Team Beyonders' Phase 1 submission (MARS_Phase1_beyonders_final.pdf) was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
+    `
+  },
+  proj7: {
+    cat: 'Competing Project &middot; Smart India Hackathon 2025',
+    content: `
+      <h2>SIH 2025 — Voltex Smart Grid Idea Presentation</h2>
+      <h3>Overview</h3>
+      <p>For Smart India Hackathon 2025 (SIH2025), the team developed and presented "Voltex" — a smart grid energy management system concept addressing India's renewable energy integration challenges.</p>
+      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=700&q=80" alt="Smart Grid">
+      <h3>Concept — Voltex</h3>
+      <p>A real-time smart grid management platform that dynamically balances supply from renewable sources (solar, wind) with grid demand through predictive load management and automated demand response. The concept targets grid stability during peak solar and low-demand periods — a key challenge in India's energy transition.</p>
+      <h3>Key Elements of the Presentation</h3>
+      <ul>
+        <li>Problem statement: Grid instability from intermittent renewables</li>
+        <li>Proposed solution: AI-assisted demand prediction + automated switching</li>
+        <li>Technical architecture: sensor layer &rarr; data processing &rarr; decision engine &rarr; actuator response</li>
+        <li>Impact metrics: estimated grid loss reduction, consumer savings, renewable integration %</li>
+        <li>Implementation roadmap: pilot &rarr; state &rarr; national scale</li>
+      </ul>
+      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Energy">
+      <h3>Outcome</h3>
+      <p>Delivered a well-structured, technically credible innovation pitch for a national-level hackathon — strengthening skills in energy systems thinking, structured problem framing, and team-based engineering communication.</p>
+    `
+  }
+};
+
+// Canvas Background
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+const dots = [];
+
+for(let i=0; i<50; i++){
+  dots.push({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 1.5 + 0.5
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,w,h);
+  for(let i=0; i<dots.length; i++){
+    let d = dots[i];
+    d.x += d.vx; d.y += d.vy;
+    if(d.x < 0 || d.x > w) d.vx *= -1;
+    if(d.y < 0 || d.y > h) d.vy *= -1;
+    
+    ctx.beginPath();
+    ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(200,240,255,0.2)';
+    ctx.fill();
+    
+    for(let j=i+1; j<dots.length; j++){
+      let d2 = dots[j];
+      let dist = Math.hypot(d.x - d2.x, d.y - d2.y);
+      if(dist < 110){
+        ctx.beginPath();
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d2.x, d2.y);
+        ctx.strokeStyle = `rgba(200,240,255,${(110-dist)/110 * 0.15})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(draw);
+}
+draw();
+
+window.addEventListener('resize', () => {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
+
+// Custom Cursor
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mouseX = w/2, mouseY = h/2;
+let ringX = w/2, ringY = h/2;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  dot.style.left = mouseX + 'px';
+  dot.style.top = mouseY + 'px';
+});
+
+function animateRing(){
+  ringX += (mouseX - ringX) * 0.2;
+  ringY += (mouseY - ringY) * 0.2;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Hover states for cursor
+document.querySelectorAll('a, button, .proj-card, .ach-img, .cert-card img, .ws-card img, .memb-card img').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    ring.style.transform = 'translate(-50%, -50%) scale(1.5)';
+    ring.style.borderColor = 'rgba(200,240,255,0.6)';
+    dot.style.opacity = '0';
+  });
+  el.addEventListener('mouseleave', () => {
+    ring.style.transform = 'translate(-50%, -50%) scale(1)';
+    ring.style.borderColor = 'rgba(200,240,255,0.3)';
+    dot.style.opacity = '1';
+  });
+});
+
+// Scroll Reveal & Skill Bars
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      // If it's the skills section, animate bars
+      if(entry.target.id === 'skills'){
+        document.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-w') + '%';
+        });
+      }
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Project Filter
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projCards = document.querySelectorAll('.proj-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-filter');
+    
+    projCards.forEach(card => {
+      if(filter === 'all' || card.getAttribute('data-cat') === filter) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Drawer
+const drawer = document.getElementById('drawer');
+const drawerOverlay = document.getElementById('drawerOverlay');
+const dCat = document.getElementById('d-cat');
+const dContent = document.getElementById('d-content');
+
+function openDrawer(id){
+  const data = projects[id];
+  if(!data) return;
+  dCat.innerHTML = data.cat;
+  dContent.innerHTML = data.content;
+  drawer.classList.add('open');
+  drawerOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer(){
+  drawer.classList.remove('open');
+  drawerOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') {
+    closeDrawer();
+    closeLightbox();
+  }
+});
+
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+
+function openLightbox(src){
+  // Replace thumbnail w800 with full resolution
+  const fullSrc = src.replace('sz=w800', 'sz=w2000');
+  lbImg.src = fullSrc;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(e){
+  if(e && e.target === lbImg) return; // Don't close if clicking the image itself
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+</script>
+</body>
+</html>
