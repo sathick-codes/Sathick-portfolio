@@ -62,9 +62,9 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.5rem}
 .filter-btn{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;padding:.4rem 1rem;border:1px solid var(--line);border-radius:20px;background:none;color:var(--text3);cursor:none;transition:all .2s}
 .filter-btn:hover,.filter-btn.active{border-color:rgba(200,240,255,0.4);color:var(--blue);background:rgba(200,240,255,0.05)}
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
-.proj-card{border-right:1px solid var(--line);border-bottom:1px solid var(--line);cursor:none;transition:background .2s;position:relative}
-.proj-card:nth-child(3n){border-right:none}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.proj-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;cursor:none;transition:all .3s ease;position:relative;background:var(--card);}
+.proj-card:hover{border-color:rgba(200,240,255,0.6);box-shadow:0 0 15px rgba(200,240,255,0.1);transform:translateY(-3px);}
 .proj-card img{width:100%;aspect-ratio:16/9;object-fit:cover;filter:brightness(.65) saturate(.7);transition:filter .3s,transform .3s;display:block}
 .proj-card:hover img{filter:brightness(.85) saturate(.9);transform:scale(1.04)}
 .proj-body{padding:1.2rem}
@@ -153,6 +153,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   .hero-stats{gap:1.5rem}
   .btn-hire{display:none}
 }
+
+.view-more-btn { display: inline-block; margin-top: 1.5rem; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); border: 1px solid var(--blue); background: none; padding: 0.5rem 1.2rem; border-radius: 4px; cursor: none; transition: all 0.2s; }
+.view-more-btn:hover { background: rgba(200,240,255,0.1); }
+.hidden-card { display: none !important; }
 </style>
 </head>
 <body>
@@ -162,7 +166,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 
 <nav>
   <div class="nav-inner wrap">
-    <a href="#" class="nav-logo"><span>SAS</span> / Portfolio</a>
+    <a href="#" class="nav-logo"><span>S2K</span> / Portfolio</a>
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
@@ -177,21 +181,23 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-eyebrow">Mechanical Engineer &middot; Chennai, India</div>
-    <div class="hero-name">Sathick<br><span class="dim">A.S</span></div>
-    <div class="hero-sub">Precision &middot; Thermal Systems &middot; Design Engineering</div>
+    <div class="hero-name" style="white-space: nowrap;">SATHICK A.S</div>
+    <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Basically my mind is Driven by Analysis, Powered by Innovations</div>
+    <div class="hero-sub">Precision &middot; Design Engineer &middot; Thermal &amp; Flow Enthusiast</div>
     <p class="hero-bio">"Curious Mechanical Engineer driven by precision, mastering flows, thermal systems, and design thinking to craft innovative solutions across multidisciplinary engineering fields."</p>
     <div class="hero-ctas">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">9.22</div><div class="stat-label">CGPA &middot; 5th Sem</div></div>
-      <div><div class="stat-num">8+</div><div class="stat-label">Projects</div></div>
-      <div><div class="stat-num">HMIL</div><div class="stat-label">Hyundai Intern</div></div>
-      <div><div class="stat-num">2&times;</div><div class="stat-label">Certified</div></div>
+    <div class="hero-stats" id="statsRow">
+      <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span>+</div><div class="stat-label">Internships</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="5" data-decimals="0">0</span>+</div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span>+</div><div class="stat-label">Certificates</div></div>
     </div>
   </div>
 </section>
+<div style="text-align:center; padding: 2rem 0; font-family: var(--mono); font-size: 0.7rem; color: var(--text3); border-top: 1px solid var(--line);">LAST UPDATED: 17 May 2026</div>
 <section id="skills" class="reveal">
   <div class="wrap">
     <div class="sec-header">
@@ -290,13 +296,26 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         </div>
       </div>
 
+      <!-- Proj 0 -->
+      <div class="proj-card" data-cat="business" onclick="openDrawer('proj0')">
+        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Comfeasy Ergonomic" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Business-Based Project &middot; Ergonomics</div>
+          <h3 class="proj-title">Comfeasy Ergonomic Business Project</h3>
+          <p class="proj-desc">Designed an ergonomic product ecosystem aimed at improving workplace comfort, blending mechanical design with business viability and market analysis.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Ergonomics</span><span class="proj-tag">Product Design</span><span class="proj-tag">Business Model</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
       <!-- Proj 4 -->
       <div class="proj-card" data-cat="business" onclick="openDrawer('proj4')">
         <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=80" alt="RideFar" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Business-Based Project &middot; Pitch Deck</div>
-          <h3 class="proj-title">RideFar — EV Mobility Startup Pitch</h3>
-          <p class="proj-desc">Developed a full startup pitch deck for RideFar — an electric vehicle mobility solution targeting underserved urban commuter segments.</p>
+          <h3 class="proj-title">RideFar — Fuel Monitor Project</h3>
+          <p class="proj-desc">Acted as a co-partner assisting the team in developing a fuel monitoring solution to optimize efficiency and track usage accurately.</p>
           <div class="proj-tags">
             <span class="proj-tag">EV Mobility</span><span class="proj-tag">Business Model</span><span class="proj-tag">Pitch Deck</span><span class="proj-tag">Go-to-Market</span>
           </div>
@@ -537,7 +556,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
       <div class="contact-links">
         <a href="mailto:iamsadhik2005@gmail.com" class="contact-link"><span class="icon">✉</span>Email &rarr; iamsadhik2005@gmail.com</a>
-        <a href="tel:+916381032845" class="contact-link"><span class="icon">↗</span>Phone &rarr; +91 63810 32845</a>
+        <a href="tel:+916381032845" class="contact-link"><span class="icon">📞</span>Phone &rarr; +91 63810 32845</a>
         <a href="https://linkedin.com/in/sathick-subhan" target="_blank" class="contact-link"><span class="icon">in</span>LinkedIn &rarr; linkedin.com/in/sathick-subhan</a>
         <div class="contact-link"><span class="icon">◎</span>Location &rarr; Tamil Nadu, India</div>
       </div>
@@ -572,6 +591,21 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 <script>
 // Project Data
 const projects = {
+  proj0: {
+    cat: 'Business-Based Project &middot; Ergonomics',
+    content: `
+      <h2>Comfeasy Ergonomic Business Project</h2>
+      <h3>Overview</h3>
+      <p>Comfeasy is a business-driven ergonomic project focused on designing and marketing products that alleviate workplace physical strain. Combining mechanical design principles with business strategy, the project aims to bridge the gap between human comfort and productivity.</p>
+      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Ergonomics">
+      <h3>Key Contributions</h3>
+      <ul>
+        <li>Ergonomic product design conceptualization.</li>
+        <li>Business model and market analysis targeting corporate workspaces.</li>
+        <li>Financial viability and prototyping strategies.</li>
+      </ul>
+    `
+  },
   proj1: {
     cat: 'Project-Based Learning &middot; MED3102 Mechatronics',
     content: `
@@ -649,9 +683,9 @@ const projects = {
   proj4: {
     cat: 'Business-Based Project &middot; Startup Pitch Deck',
     content: `
-      <h2>RideFar — EV Mobility Startup Pitch</h2>
+      <h2>RideFar — Fuel Monitor Project</h2>
       <h3>Overview</h3>
-      <p>RideFar is an EV-based mobility startup concept pitched as a business-based project. The pitch deck covers market opportunity, product positioning, business model canvas, revenue streams, competitive analysis, and go-to-market strategy — combining mechanical engineering product knowledge with entrepreneurial thinking.</p>
+      <p>Assisted the core team as a co-partner in the development of the RideFar Fuel Monitor project. This system is designed to track, analyze, and optimize fuel usage across vehicles.</p>
       <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="EV Pitch">
       <h3>Scope of Work</h3>
       <ul>
@@ -902,6 +936,89 @@ function closeLightbox(e){
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
 }
+
+
+// COUNTER ANIMATION
+function runCounters() {
+  const counters = document.querySelectorAll('.counter');
+  const speed = 200; 
+
+  counters.forEach(counter => {
+    const target = parseFloat(counter.getAttribute('data-target'));
+    const decimals = parseInt(counter.getAttribute('data-decimals'));
+    const inc = target / speed;
+    let count = 0;
+
+    const updateCount = () => {
+      count += inc;
+      if (count < target) {
+        counter.innerText = count.toFixed(decimals);
+        requestAnimationFrame(updateCount);
+      } else {
+        counter.innerText = target.toFixed(decimals);
+      }
+    };
+    updateCount();
+  });
+}
+// Run once on load
+runCounters();
+
+
+// VIEW MORE LOGIC
+function setupViewMore(containerSelector, itemSelector, visibleCount, btnText) {
+  const container = document.querySelector(containerSelector);
+  if(!container) return;
+  const items = Array.from(container.querySelectorAll(itemSelector));
+  
+  // Hide items past visibleCount
+  items.forEach((item, index) => {
+    if(index >= visibleCount) item.classList.add('hidden-card');
+  });
+
+  if(items.length > visibleCount) {
+    const btn = document.createElement('button');
+    btn.className = 'view-more-btn';
+    btn.innerText = btnText + ' (' + (items.length - visibleCount) + ' more)';
+    
+    let expanded = false;
+    btn.onclick = () => {
+      expanded = !expanded;
+      if(expanded) {
+        items.forEach(item => item.classList.remove('hidden-card'));
+        btn.innerText = 'View Less';
+      } else {
+        items.forEach((item, index) => {
+          if(index >= visibleCount) item.classList.add('hidden-card');
+        });
+        btn.innerText = btnText + ' (' + (items.length - visibleCount) + ' more)';
+        // scroll back slightly
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+    container.after(btn);
+  }
+}
+
+// Ensure the filter doesn't break the hidden items, or we just override view more when filtering
+// Simple approach: When a filter is clicked, expand all to avoid confusion
+const filterBtns2 = document.querySelectorAll('.filter-btn');
+filterBtns2.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // If they use filter, just show all matching without view more limit
+    const btnVM = document.querySelector('.proj-grid').nextElementSibling;
+    if(btnVM && btnVM.classList.contains('view-more-btn')) btnVM.style.display = 'none';
+    
+    document.querySelectorAll('.proj-card').forEach(c => c.classList.remove('hidden-card'));
+    
+    // If "All" is clicked again, we could restore, but simpler to just leave expanded.
+  });
+});
+
+setupViewMore('.proj-grid', '.proj-card', 3, 'View More Projects');
+setupViewMore('.ach-grid', '.ach-card', 1, 'View More Competition Wins');
+setupViewMore('.cert-grid', '.cert-card', 1, 'View More Certifications');
+setupViewMore('.workshop-grid', '.ws-card', 1, 'View More Workshops');
 
 </script>
 </body>
