@@ -20,7 +20,7 @@ section{padding:6rem 0;position:relative;z-index:1}
 .sec-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3.5rem}
 .sec-num{font-family:var(--mono);font-size:0.72rem;color:var(--blue);letter-spacing:0.12em}
 .sec-title{font-size:1.5rem;font-weight:600;white-space:nowrap}
-.sec-line{flex:1;height:1px;background:var(--line)}
+.sec-line{display:none;}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
 .reveal.visible{opacity:1;transform:none}
 nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);z-index:100;display:flex;align-items:center;padding:0 2rem}
@@ -46,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .btn-ghost{border:1px solid rgba(255,255,255,0.18);color:var(--text);padding:.7rem 1.6rem;border-radius:3px;text-decoration:none;font-size:0.9rem;transition:border-color .2s}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.4)}
 .hero-stats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--line);flex-wrap:wrap}
-.stat-num{font-size:1.8rem;font-weight:700;color:var(--blue)}
+.stat-num{font-size:1.8rem;font-weight:700;color:var(--blue); font-variant-numeric: tabular-nums; min-width: 80px; display: inline-block;}
 .stat-label{font-size:0.78rem;color:var(--text3);margin-top:.2rem}
 #skills .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem}
 .skill-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
@@ -154,15 +154,24 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   .btn-hire{display:none}
 }
 
-.view-more-btn { display: inline-block; margin-top: 1.5rem; font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); border: 1px solid var(--blue); background: none; padding: 0.5rem 1.2rem; border-radius: 4px; cursor: none; transition: all 0.2s; }
-.view-more-btn:hover { background: rgba(200,240,255,0.1); }
+.view-more-proj-wrap { display: flex; align-items: center; justify-content: center; margin-top: 2.5rem; position: relative; }
+.view-more-proj-wrap::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--line); z-index: -1; }
+.view-more-proj-btn { background: var(--bg); border: 1px solid var(--line); color: var(--text3); padding: 0.4rem 1.2rem; border-radius: 20px; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: none; transition: all 0.2s; }
+.view-more-proj-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+.view-more-cert-wrap { display: flex; align-items: center; justify-content: center; }
+.view-more-cert-btn { background: none; border: 1px solid var(--blue); color: var(--blue); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.2s; }
+.view-more-cert-btn:hover { background: rgba(200,240,255,0.1); }
+.vm-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; }
+
+
 .hidden-card { display: none !important; }
 </style>
 </head>
 <body>
 <canvas id="bg"></canvas>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot" style="background:none; width:auto; height:auto; font-size:1.2rem; color:var(--blue); transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center;">⚙</div>
+
 
 <nav>
   <div class="nav-inner wrap">
@@ -182,7 +191,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   <div class="hero-inner">
     <div class="hero-eyebrow">Mechanical Engineer &middot; Chennai, India</div>
     <div class="hero-name" style="white-space: nowrap;">SATHICK A.S</div>
-    <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Basically my mind is Driven by Analysis, Powered by Innovations</div>
+    <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Driven by Analysis, Powered by Innovations</div>
     <div class="hero-sub">Precision &middot; Design Engineer &middot; Thermal &amp; Flow Enthusiast</div>
     <p class="hero-bio">"Curious Mechanical Engineer driven by precision, mastering flows, thermal systems, and design thinking to craft innovative solutions across multidisciplinary engineering fields."</p>
     <div class="hero-ctas">
@@ -190,7 +199,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
     <div class="hero-stats" id="statsRow">
-      <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA; till sem 5</div></div>
       <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span>+</div><div class="stat-label">Internships</div></div>
       <div><div class="stat-num"><span class="counter" data-target="5" data-decimals="0">0</span>+</div><div class="stat-label">Projects</div></div>
       <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span>+</div><div class="stat-label">Certificates</div></div>
@@ -296,6 +305,21 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         </div>
       </div>
 
+      <!-- Proj 6 -->
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
+        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=700&q=80" alt="Mars Rover" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
+          <h3 class="proj-title">M.A.R.S Hackathon (Lunar Rover Design)</h3>
+          <p class="proj-desc">Designed and modelled a Mars/lunar terrain rover, applying terrain-to-STL conversion, MATLAB analysis, and structural assembly design.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Lunar Rover</span><span class="proj-tag">Terrain Analysis</span><span class="proj-tag">MATLAB</span><span class="proj-tag">STL Modelling</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- Proj 7 -->
       <!-- Proj 0 -->
       <div class="proj-card" data-cat="business" onclick="openDrawer('proj0')">
         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Comfeasy Ergonomic" loading="lazy">
@@ -332,20 +356,6 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <p class="proj-desc">Applied Six Sigma DMAIC and REBA assessment tool at HMIL Assembly Shop #2 to identify and reduce musculoskeletal fatigue.</p>
           <div class="proj-tags">
             <span class="proj-tag">Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">REBA Tool</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Biomechanics</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- Proj 6 -->
-      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=700&q=80" alt="Mars Rover" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
-          <h3 class="proj-title">M.A.R.S Hackathon (Lunar Rover Design)</h3>
-          <p class="proj-desc">Designed and modelled a Mars/lunar terrain rover, applying terrain-to-STL conversion, MATLAB analysis, and structural assembly design.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Lunar Rover</span><span class="proj-tag">Terrain Analysis</span><span class="proj-tag">MATLAB</span><span class="proj-tag">STL Modelling</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -556,7 +566,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
       <div class="contact-links">
         <a href="mailto:iamsadhik2005@gmail.com" class="contact-link"><span class="icon">✉</span>Email &rarr; iamsadhik2005@gmail.com</a>
-        <a href="tel:+916381032845" class="contact-link"><span class="icon">📞</span>Phone &rarr; +91 63810 32845</a>
+        <a href="tel:+916381032845" class="contact-link"><span class="icon" style="font-family: var(--mono);">✆</span>Phone &rarr; +91 63810 32845</a>
         <a href="https://linkedin.com/in/sathick-subhan" target="_blank" class="contact-link"><span class="icon">in</span>LinkedIn &rarr; linkedin.com/in/sathick-subhan</a>
         <div class="contact-link"><span class="icon">◎</span>Location &rarr; Tamil Nadu, India</div>
       </div>
@@ -819,9 +829,9 @@ window.addEventListener('resize', () => {
 
 // Custom Cursor
 const dot = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
+
 let mouseX = w/2, mouseY = h/2;
-let ringX = w/2, ringY = h/2;
+
 
 document.addEventListener('mousemove', e => {
   mouseX = e.clientX;
@@ -830,26 +840,15 @@ document.addEventListener('mousemove', e => {
   dot.style.top = mouseY + 'px';
 });
 
-function animateRing(){
-  ringX += (mouseX - ringX) * 0.2;
-  ringY += (mouseY - ringY) * 0.2;
-  ring.style.left = ringX + 'px';
-  ring.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
-}
-animateRing();
+
 
 // Hover states for cursor
 document.querySelectorAll('a, button, .proj-card, .ach-img, .cert-card img, .ws-card img, .memb-card img').forEach(el => {
   el.addEventListener('mouseenter', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(1.5)';
-    ring.style.borderColor = 'rgba(200,240,255,0.6)';
-    dot.style.opacity = '0';
+    dot.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(90deg)'; dot.style.transition = 'transform 0.3s';
   });
   el.addEventListener('mouseleave', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(1)';
-    ring.style.borderColor = 'rgba(200,240,255,0.3)';
-    dot.style.opacity = '1';
+    dot.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
   });
 });
 
@@ -966,59 +965,75 @@ runCounters();
 
 
 // VIEW MORE LOGIC
-function setupViewMore(containerSelector, itemSelector, visibleCount, btnText) {
+function setupViewMore(containerSelector, itemSelector, visibleCount, type) {
   const container = document.querySelector(containerSelector);
   if(!container) return;
   const items = Array.from(container.querySelectorAll(itemSelector));
   
-  // Hide items past visibleCount
   items.forEach((item, index) => {
     if(index >= visibleCount) item.classList.add('hidden-card');
   });
 
   if(items.length > visibleCount) {
+    const btnWrap = document.createElement('div');
     const btn = document.createElement('button');
-    btn.className = 'view-more-btn';
-    btn.innerText = btnText + ' (' + (items.length - visibleCount) + ' more)';
-    
     let expanded = false;
+
+    if(type === 'projects') {
+      btnWrap.className = 'view-more-proj-wrap';
+      btn.className = 'view-more-proj-btn';
+      btn.innerText = 'View More';
+    } else {
+      btnWrap.className = 'view-more-cert-wrap';
+      btn.className = 'view-more-cert-btn';
+      btn.innerHTML = '<span class="vm-icon">↓</span>';
+    }
+    
     btn.onclick = () => {
       expanded = !expanded;
       if(expanded) {
         items.forEach(item => item.classList.remove('hidden-card'));
-        btn.innerText = 'View Less';
+        if(type === 'projects') {
+          btn.innerText = 'View Less';
+        } else {
+          btn.innerHTML = '<span class="vm-icon" style="transform:rotate(180deg)">↑</span>';
+        }
       } else {
         items.forEach((item, index) => {
           if(index >= visibleCount) item.classList.add('hidden-card');
         });
-        btn.innerText = btnText + ' (' + (items.length - visibleCount) + ' more)';
-        // scroll back slightly
-        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if(type === 'projects') {
+          btn.innerText = 'View More';
+        } else {
+          btn.innerHTML = '<span class="vm-icon">↓</span>';
+        }
+        container.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     };
-    container.after(btn);
+    
+    btnWrap.appendChild(btn);
+    if(type === 'projects') {
+      container.after(btnWrap);
+    } else {
+      // For certificates, append the wrapper to the grid so it can be placed to the right
+      container.appendChild(btnWrap);
+    }
   }
 }
 
-// Ensure the filter doesn't break the hidden items, or we just override view more when filtering
-// Simple approach: When a filter is clicked, expand all to avoid confusion
 const filterBtns2 = document.querySelectorAll('.filter-btn');
 filterBtns2.forEach(btn => {
   btn.addEventListener('click', () => {
-    // If they use filter, just show all matching without view more limit
-    const btnVM = document.querySelector('.proj-grid').nextElementSibling;
-    if(btnVM && btnVM.classList.contains('view-more-btn')) btnVM.style.display = 'none';
-    
+    const btnWrap = document.querySelector('.proj-grid').nextElementSibling;
+    if(btnWrap && btnWrap.classList.contains('view-more-proj-wrap')) btnWrap.style.display = 'none';
     document.querySelectorAll('.proj-card').forEach(c => c.classList.remove('hidden-card'));
-    
-    // If "All" is clicked again, we could restore, but simpler to just leave expanded.
   });
 });
 
-setupViewMore('.proj-grid', '.proj-card', 3, 'View More Projects');
-setupViewMore('.ach-grid', '.ach-card', 1, 'View More Competition Wins');
-setupViewMore('.cert-grid', '.cert-card', 1, 'View More Certifications');
-setupViewMore('.workshop-grid', '.ws-card', 1, 'View More Workshops');
+setupViewMore('.proj-grid', '.proj-card', 3, 'projects');
+setupViewMore('.ach-grid', '.ach-card', 1, 'certs');
+setupViewMore('.cert-grid', '.cert-card', 1, 'certs');
+setupViewMore('.workshop-grid', '.ws-card', 1, 'certs');
 
 </script>
 </body>
