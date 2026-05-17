@@ -52,7 +52,7 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .skill-row{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
 .skill-name{font-family:var(--mono);font-size:0.78rem;color:var(--text2);min-width:165px}
 .skill-track{flex:1;height:2px;background:#1c1c21;border-radius:2px;overflow:hidden}
-.skill-fill{height:100%;background:linear-gradient(to right,var(--peach),var(--blue));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.skill-fill{height:100%;background:linear-gradient(to right,var(--text2),var(--blue));width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
 .pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
 .pill{font-family:var(--mono);font-size:0.72rem;padding:.3rem .8rem;border:1px solid rgba(255,255,255,0.12);border-radius:20px;color:var(--text2);transition:border-color .2s}
 .pill:hover{border-color:rgba(255,255,255,0.3)}
@@ -170,7 +170,16 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 </head>
 <body>
 <canvas id="bg"></canvas>
-<div class="cursor-dot" id="cursorDot" style="background:none; width:auto; height:auto; font-size:1.2rem; color:var(--blue); transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center;">⚙</div>
+<div class="cursor-dot" id="cursorDot" style="background:none; width:auto; height:auto; color:var(--blue); transform:translate(-50%, -50%); display:flex; align-items:center; justify-content:center;">
+    <style>
+      @keyframes spinRight { 100% { transform: rotate(360deg); } }
+      @keyframes spinLeft { 100% { transform: rotate(-360deg); } }
+      .gear1 { display: inline-block; font-size: 1.4rem; animation: spinRight 4s linear infinite; line-height: 1; }
+      .gear2 { display: inline-block; font-size: 0.9rem; animation: spinLeft 4s linear infinite; margin-left: -0.3rem; margin-top: 0.6rem; line-height: 1; color: var(--text2); }
+    </style>
+    <span class="gear1">⚙</span>
+    <span class="gear2">⚙</span>
+  </div>
 
 
 <nav>
@@ -222,8 +231,8 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         <div class="skill-row"><span class="skill-name">MATLAB</span><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
         <div class="skill-row"><span class="skill-name">MS Office Suite</span><div class="skill-track"><div class="skill-fill" data-w="96"></div></div></div>
         <div class="skill-row"><span class="skill-name">ANSYS (FEA)</span><div class="skill-track"><div class="skill-fill" data-w="62"></div></div></div>
-        <div class="skill-row"><span class="skill-name">GD&amp;T</span><div class="skill-track"><div class="skill-fill" data-w="58"></div></div></div>
-        <div class="skill-row"><span class="skill-name">3D Printing</span><div class="skill-track"><div class="skill-fill" data-w="58"></div></div></div>
+        <div class="skill-row"><span class="skill-name">GD&amp;T</span><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
+        <div class="skill-row"><span class="skill-name">3D Printing</span><div class="skill-track"><div class="skill-fill" data-w="75"></div></div></div>
         <div class="skill-row"><span class="skill-name">SolidWorks</span><div class="skill-track"><div class="skill-fill" data-w="38"></div></div></div>
         <div class="skill-row"><span class="skill-name">CFD Analysis</span><div class="skill-track"><div class="skill-fill" data-w="28"></div></div></div>
         <div class="skill-row"><span class="skill-name">Arduino / Embedded</span><div class="skill-track"><div class="skill-fill" data-w="36"></div></div></div>
@@ -272,20 +281,6 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <p class="proj-desc">Microcontroller-based door automation enabling hands-free operation via push-button or mobile command — designed for accessibility in compact environments.</p>
           <div class="proj-tags">
             <span class="proj-tag">Arduino Uno</span><span class="proj-tag">ESP32</span><span class="proj-tag">Servo Motor</span><span class="proj-tag">Bluetooth</span><span class="proj-tag">Reed Switch</span><span class="proj-tag">Mechatronics</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- Proj 2 -->
-      <div class="proj-card" data-cat="pbl" onclick="openDrawer('proj2')">
-        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80" alt="USA Principle" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Project-Based Learning &middot; MED3103</div>
-          <h3 class="proj-title">Automated Door System using USA Principle</h3>
-          <p class="proj-desc">Applied Understand–Simplify–Automate methodology to design an intelligent automation solution for manufacturing-inspired environments.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">USA Principle</span><span class="proj-tag">Automation</span><span class="proj-tag">Arduino</span><span class="proj-tag">Sensors</span><span class="proj-tag">Actuators</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -454,8 +449,12 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
     </div>
 
-    <div class="sub-head">Certifications &amp; Internships</div>
+    <div class="sub-head">Course &amp; Internship</div>
     <div class="cert-grid">
+      <div class="cert-card">
+        <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+        <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
+      </div>
       <div class="cert-card">
         <img src="https://drive.google.com/thumbnail?id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
         <div class="cert-info"><div class="cert-title">Internship at Hyundai Motor India Ltd.</div><div class="cert-issuer">HMIL</div></div>
@@ -475,10 +474,6 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <div class="cert-card">
         <img src="https://drive.google.com/thumbnail?id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
         <div class="cert-info"><div class="cert-title">Entrepreneurship Skills Completion</div><div class="cert-issuer">Online Course</div></div>
-      </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
       </div>
     </div>
 
@@ -508,16 +503,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-date">Jun–Jul 2025</div>
-          <div class="tl-org">Hyundai Motor India Limited (HMIL)</div>
-          <div class="tl-role">Engineering Intern — Assembly Shop #2</div>
-          <p class="tl-desc">17-day internship. Applied DMAIC and REBA ergonomics tools to analyse musculoskeletal fatigue across TRIM, CHASSIS and FINAL assembly lines. Proposed adjustable work platform and torque arm solutions, predicted REBA score reduction from 9 → 4–5. Also observed Kappa petrol and diesel engine assembly in Engine Shop #2.</p>
-          <div class="tl-badges"><span class="tl-badge">Assembly</span><span class="tl-badge">Ergonomics</span><span class="tl-badge">Six Sigma</span></div>
-        </div>
-        
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-date">[Online — 2024]</div>
+          <div class="tl-date">Feb–Mar 2026</div>
           <div class="tl-org">Skyline Space Technology</div>
           <div class="tl-role">CubeSats &amp; Satellites Internship</div>
           <p class="tl-desc">Online internship covering fundamentals of CubeSat design, orbital mechanics, satellite subsystems and space mission planning.</p>
@@ -526,7 +512,16 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         
         <div class="tl-item">
           <div class="tl-dot"></div>
-          <div class="tl-date">[Online — 2024]</div>
+          <div class="tl-date">Jun–Jul 2025</div>
+          <div class="tl-org">Hyundai Motor India Limited (HMIL)</div>
+          <div class="tl-role">Engineering Intern — Assembly Shop #2</div>
+          <p class="tl-desc">Applied DMAIC and REBA ergonomics tools to analyse musculoskeletal fatigue across TRIM, CHASSIS and FINAL assembly lines. Proposed adjustable work platform and torque arm solutions, predicted REBA score reduction from 9 → 4–5. Also observed Kappa petrol and diesel engine assembly in Engine Shop #2.</p>
+          <div class="tl-badges"><span class="tl-badge">Assembly</span><span class="tl-badge">Ergonomics</span><span class="tl-badge">Six Sigma</span></div>
+        </div>
+        
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Jul–Sep 2024</div>
           <div class="tl-org">RINEX Education</div>
           <div class="tl-role">AutoCAD &amp; MATLAB Internship</div>
           <p class="tl-desc">Completed structured internship covering AutoCAD 2D/3D drafting workflows and MATLAB programming fundamentals — both resulting in certifications.</p>
@@ -845,10 +840,10 @@ document.addEventListener('mousemove', e => {
 // Hover states for cursor
 document.querySelectorAll('a, button, .proj-card, .ach-img, .cert-card img, .ws-card img, .memb-card img').forEach(el => {
   el.addEventListener('mouseenter', () => {
-    dot.style.transform = 'translate(-50%, -50%) scale(1.5) rotate(90deg)'; dot.style.transition = 'transform 0.3s';
+    dot.style.transform = 'translate(-50%, -50%) scale(1.5)'; dot.style.transition = 'transform 0.3s';
   });
   el.addEventListener('mouseleave', () => {
-    dot.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
+    dot.style.transform = 'translate(-50%, -50%) scale(1)';
   });
 });
 
