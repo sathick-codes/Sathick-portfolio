@@ -163,12 +163,14 @@ footer{border-top:1px solid var(--line);padding:2rem 0;position:relative;z-index
 footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.08em}
 .sub-head{font-size:1rem;font-weight:600;margin-bottom:1.5rem;color:var(--text)}
 @media(max-width:900px){
-  .menu-toggle{display:block}
-  .nav-links{display:flex;flex-direction:column;align-items:flex-end;text-align:right;position:fixed;top:64px;right:0;width:65%;bottom:0;background:rgba(12,12,14,0.95);backdrop-filter:blur(10px);z-index:99;padding:2rem;gap:1.5rem;transform:translateX(100%);pointer-events:none;transition:transform .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line)}
+  .menu-toggle{display:block; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index:100; position:relative;}
+  .nav-links{display:flex;flex-direction:column;align-items:flex-end;text-align:right;position:fixed;top:64px;right:0;width:65%;bottom:0;background:#0c0c0e !important;z-index:99;padding:2rem;gap:1rem;transform:translateX(100%);pointer-events:none;transition:transform .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line);box-shadow:-5px 0 20px rgba(0,0,0,0.5);}
+  .nav-links > a, .nav-links .has-dropdown > a { border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 1rem; width: 100%; display: block; }
   .nav-links.active{transform:translateX(0);pointer-events:all}
   #cursorDot{display:none !important}
-  .has-dropdown{position:static}
-  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-right:1rem;border-right:1px solid var(--line);border-left:none;border-radius:0;margin-top:.5rem;display:none;align-items:flex-end;text-align:right}
+  .has-dropdown{position:static; width:100%;}
+  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-right:0;border-right:none;border-left:none;border-radius:0;margin-top:0.5rem;display:none;align-items:flex-end;text-align:right}
+  .dropdown a { padding: 0.5rem 0; font-size: 0.85rem; color: var(--text2); }
   .has-dropdown.open .dropdown{display:flex;flex-direction:column}
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
@@ -325,10 +327,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     
     <div class="proj-grid">
       <div class="proj-card" data-cat="competition" onclick="openDrawer('proj0')">
-        <img src="https://drive.google.com/thumbnail?id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6&sz=w800" alt="M.A.R.S Hackathon" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6" alt="M.A.R.S Hackathon" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Competition &middot; 2nd Place 🥈</div>
-          <h3 class="proj-title">M.A.R.S Hackathon (Habitat &amp; Shelter Design)</h3>
+          <h3 class="proj-title">M.A.R.S. Challenge - Site Selection and Shelter Design</h3>
           <p class="proj-desc">Participated in a habitat site selection and shelter design challenge for the lunar/Mars surface, securing 2nd place with Team Beyonders.</p>
           <div class="proj-tags">
             <span class="proj-tag">Habitat Design</span><span class="proj-tag">Site Selection</span><span class="proj-tag">Shelter Design</span>
@@ -338,7 +340,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj1')">
-        <img src="https://drive.google.com/thumbnail?id=1ab3yJXnzvlYFvaEBCzgw1TWMmlmySpm2&sz=w800" alt="Tesla Turbine Hobby" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1ab3yJXnzvlYFvaEBCzgw1TWMmlmySpm2" alt="Tesla Turbine Hobby" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Hobby / Innovation</div>
           <h3 class="proj-title">Fabrication &amp; Efficiency Analysis of Tesla Bladeless Turbine</h3>
@@ -351,10 +353,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj2')">
-        <img src="https://drive.google.com/thumbnail?id=1pEbywOn4qv3Ov77EmklVF2VtDQapwoG&sz=w800" alt="Tesla Turbine PBL" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1pEbywOn4qv3Ov77EmklVF2VtDQapwoG" alt="Tesla Turbine PBL" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Academic Project &middot; PBL (MEDX37)</div>
-          <h3 class="proj-title">Usage of Tesla Turbine for Domestic Wind Energy</h3>
+          <h3 class="proj-title">Usage of Tesla Turbine for Domestic Wind Energy Generation</h3>
           <p class="proj-desc">A project-based learning initiative focused on optimizing boundary-layer turbines for domestic renewable wind energy extraction.</p>
           <div class="proj-tags">
             <span class="proj-tag">PBL</span><span class="proj-tag">Renewable Energy</span><span class="proj-tag">Fluid Mechanics</span>
@@ -364,10 +366,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="competition" onclick="openDrawer('proj3')">
-        <img src="https://drive.google.com/thumbnail?id=1Dig6jetkv658KlokDooq3ylIPxNOOlpt&sz=w800" alt="SIH Challenge" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1Dig6jetkv658KlokDooq3ylIPxNOOlpt" alt="SIH Challenge" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Competition</div>
-          <h3 class="proj-title">Smart India Hackathon (SIH) Project</h3>
+          <h3 class="proj-title">Tension-Based Fault Alert System for LV Power Transmission Lines (SIH2025)</h3>
           <p class="proj-desc">Developed an innovative, problem-solving mechanism addressing real-world industrial challenges through optimized design and automated solutions.</p>
           <div class="proj-tags">
             <span class="proj-tag">Innovation</span><span class="proj-tag">Problem Solving</span><span class="proj-tag">Design</span>
@@ -376,24 +378,11 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         </div>
       </div>
 
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj4')">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Automatic Door" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; PBL</div>
-          <h3 class="proj-title">Design of Mechatronic System: Automatic Door</h3>
-          <p class="proj-desc">Engineered an automated door system integrating mechatronic principles, sensors, and actuators for seamless and responsive operation.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Mechatronics</span><span class="proj-tag">Sensors</span><span class="proj-tag">Automation</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj5')">
-        <img src="https://drive.google.com/thumbnail?id=14iSsovoFkjqLMLiaKU28OPplSGc6E2lT&sz=w800" alt="RideFar" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=14iSsovoFkjqLMLiaKU28OPplSGc6E2lT" alt="RideFar - Fuel Monitoring Device" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Academic &middot; Business Model</div>
-          <h3 class="proj-title">RideFar</h3>
+          <h3 class="proj-title">RideFar - Fuel Monitoring Device</h3>
           <p class="proj-desc">Entrepreneurial business model focusing on long-distance, optimized transit solutions leveraging engineering logistics and efficiency.</p>
           <div class="proj-tags">
             <span class="proj-tag">Business Model</span><span class="proj-tag">Logistics</span><span class="proj-tag">Entrepreneurship</span>
@@ -403,10 +392,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj6')">
-        <img src="https://drive.google.com/thumbnail?id=1yQXnOqhRjAblDC8uW5wZ6dv10JmKqzYY&sz=w800" alt="Comfeasy" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1yQXnOqhRjAblDC8uW5wZ6dv10JmKqzYY" alt="ComfEasy - Ergonomic Modular Massager" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Academic &middot; Business Model</div>
-          <h3 class="proj-title">Comfeasy</h3>
+          <h3 class="proj-title">ComfEasy - Ergonomic Modular Massager</h3>
           <p class="proj-desc">Developed a comprehensive business strategy for ergonomic and comfortable daily utility products designed for modern lifestyles.</p>
           <div class="proj-tags">
             <span class="proj-tag">Business Model</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Entrepreneurship</span>
@@ -416,10 +405,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="internship" onclick="openDrawer('proj7')">
-        <img src="https://drive.google.com/thumbnail?id=1mtkjQNVNCgNGCJn6c0CX2Pm4FDdFOS98&sz=w800" alt="Internship HMIL" loading="lazy">
+        <img src="https://drive.google.com/uc?export=view&id=1mtkjQNVNCgNGCJn6c0CX2Pm4FDdFOS98" alt="Internship HMIL" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Internship</div>
-          <h3 class="proj-title">Hyundai Motors India Ltd. Internship</h3>
+          <h3 class="proj-title">Ergonomic and Process Optimisation @ HMIL</h3>
           <p class="proj-desc">Hands-on automotive manufacturing experience, analyzing assembly line efficiency and operational workflow at the HMIL facility.</p>
           <div class="proj-tags">
             <span class="proj-tag">Automotive</span><span class="proj-tag">Manufacturing</span><span class="proj-tag">Analysis</span>
@@ -446,7 +435,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <div class="deck stacked" id="deck-1" onclick="revealDeck('deck-1')">
         <!-- Cards with real Drive thumbnails -->
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1J5kZujo6SfVaKttANorCBiwzhMpRUKzX&sz=w800" alt="Model Mania 1st" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1J5kZujo6SfVaKttANorCBiwzhMpRUKzX" alt="Model Mania 1st" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥇 1st Place</span>
             <div class="ach-event">Model Mania</div>
@@ -454,7 +443,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1bBO97uWuq9mQuRGOXsCnYn3V7CNCLO2B&sz=w800" alt="Bridge Building" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1bBO97uWuq9mQuRGOXsCnYn3V7CNCLO2B" alt="Bridge Building" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥇 1st Place</span>
             <div class="ach-event">Bridge Building</div>
@@ -462,7 +451,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1sOmkX-EL9aQIbbXlJm9Z5s-bLZCj5uFH&sz=w800" alt="Bridge IT" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1sOmkX-EL9aQIbbXlJm9Z5s-bLZCj5uFH" alt="Bridge IT" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥇 1st Place</span>
             <div class="ach-event">Bridge IT</div>
@@ -470,7 +459,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=127V7Laz9NA4oZBbkyjdd5OVHu6VTs8Ri&sz=w800" alt="HoverCraft Racing" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=127V7Laz9NA4oZBbkyjdd5OVHu6VTs8Ri" alt="HoverCraft Racing" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥇 1st Place</span>
             <div class="ach-event">HoverCraft Racing</div>
@@ -478,7 +467,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1_GxJKfooefkyydOmh8DYvFqACnM96MP3&sz=w800" alt="GreenShift Quiz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1_GxJKfooefkyydOmh8DYvFqACnM96MP3" alt="GreenShift Quiz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥇 1st Place</span>
             <div class="ach-event">GreenShift Quiz</div>
@@ -486,7 +475,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6&sz=w800" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥈 2nd Place</span>
             <div class="ach-event">M.A.R.S Hackathon</div>
@@ -494,7 +483,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1uhZWpCL6n8TM7EJpjiVWQgcoDMXtfgbv&sz=w800" alt="Short Film" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1uhZWpCL6n8TM7EJpjiVWQgcoDMXtfgbv" alt="Short Film" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥈 2nd Place</span>
             <div class="ach-event">Short Film Recyclathon</div>
@@ -502,7 +491,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1XCG_LD6lyv5cu1O9-CEWwlD8eMuUWktH&sz=w800" alt="Lathe Wizz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1XCG_LD6lyv5cu1O9-CEWwlD8eMuUWktH" alt="Lathe Wizz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥉 3rd Place</span>
             <div class="ach-event">Lathe Wizz</div>
@@ -519,27 +508,27 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
       <div class="deck stacked" id="deck-2" onclick="revealDeck('deck-2')">
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
         </div>
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">Internship at Hyundai Motor India Ltd.</div><div class="cert-issuer">HMIL</div></div>
         </div>
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1E2Nz12iKLPBOYuzl8iNUbPbSYj4-d9XU&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1E2Nz12iKLPBOYuzl8iNUbPbSYj4-d9XU" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">AutoCAD &amp; MATLAB Internship</div><div class="cert-issuer">RINEX Education</div></div>
         </div>
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1PHOijYZPICmDBG_wiCcBxqpuR2Ir6UU3&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1PHOijYZPICmDBG_wiCcBxqpuR2Ir6UU3" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">AutoCAD + Self-Paced MATLAB Course</div><div class="cert-issuer">RINEX Education</div></div>
         </div>
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1DiuvstyfsaGuRD39zMy0p9wmGELSKDzK&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1DiuvstyfsaGuRD39zMy0p9wmGELSKDzK" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">MATLAB Onramp Course Completion</div><div class="cert-issuer">MathWorks</div></div>
         </div>
         <div class="cert-card deck-card">
-          <img src="https://drive.google.com/thumbnail?id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://drive.google.com/uc?export=view&id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz" loading="lazy" onclick="openLightbox(this.src)">
           <div class="cert-info"><div class="cert-title">Entrepreneurship Skills Completion</div><div class="cert-issuer">Wadhwani Foundation</div></div>
         </div>
       </div>
@@ -551,12 +540,12 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         <div class="overlay-text">Swipe / Tap to Reveal &rarr;</div>
       </div>
       <div class="deck stacked" id="deck-3" onclick="revealDeck('deck-3')">
-        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=12aLlTAfvvVFR0A0Lyz-R9HzgrILZW_m9&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">AeroModelling Workshop</div></div>
-        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=1mJa1N8pTJGeKdOU7mAh5g3_i0_KiIOqP&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">Eco-Talk Recyclathon Participation</div></div>
-        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=1GdrSpg03HJAuY1e5gX8f1J0s3WApOMPE&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">MechGust CAD Participation</div></div>
+        <div class="ws-card deck-card"><img src="https://drive.google.com/uc?export=view&id=12aLlTAfvvVFR0A0Lyz-R9HzgrILZW_m9" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">AeroModelling Workshop</div></div>
+        <div class="ws-card deck-card"><img src="https://drive.google.com/uc?export=view&id=1mJa1N8pTJGeKdOU7mAh5g3_i0_KiIOqP" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">Eco-Talk Recyclathon Participation</div></div>
+        <div class="ws-card deck-card"><img src="https://drive.google.com/uc?export=view&id=1GdrSpg03HJAuY1e5gX8f1J0s3WApOMPE" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">MechGust CAD Participation</div></div>
         
         <div class="memb-card deck-card" style="display:block;">
-          <img src="https://drive.google.com/thumbnail?id=1NQw5OSb9I2O_bKi6DdAQFtuy-V7e8DJ6&sz=w800" loading="lazy" onclick="openLightbox(this.src)" style="width:100%; height:auto;">
+          <img src="https://drive.google.com/uc?export=view&id=1NQw5OSb9I2O_bKi6DdAQFtuy-V7e8DJ6" loading="lazy" onclick="openLightbox(this.src)" style="width:100%; height:auto;">
           <div class="memb-card-text" style="text-align:center;">ISHRAE Student Membership</div>
         </div>
       </div>
@@ -683,10 +672,10 @@ const projects = {
   proj0: {
     cat: 'Competition &middot; 2nd Place 🥈',
     content: `
-      <h2>M.A.R.S Hackathon (Habitat & Shelter Design)</h2>
+      <h2>M.A.R.S. Challenge - Site Selection and Shelter Design</h2>
       <h3>Overview</h3>
       <p>Participated in the M.A.R.S (Mechanical Aerospace Robotics Systems) Hackathon — a competitive event requiring teams to develop solutions for habitat site selection and shelter design on the lunar/Mars surface. The team "Beyonders" secured 2nd place.</p>
-      <img src="https://drive.google.com/thumbnail?id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6&sz=w1000" alt="Space">
+      <img src="https://drive.google.com/uc?export=view&id=1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6" alt="Space">
       <h3>Technical Work</h3>
       <ul>
         <li>Analysed terrain and site conditions for optimal habitat placement using DTM data.</li>
@@ -696,7 +685,7 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Team Beyonders' Phase 1 submission was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=14kixiQ1IOq9Y-kLsGZLIMYENQZhyKVB8&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://drive.google.com/thumbnail?id=1oZug9_fao3xkFABU3jJ1X760U7dsKwCK&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=14kixiQ1IOq9Y-kLsGZLIMYENQZhyKVB8" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://drive.google.com/uc?export=view&id=1oZug9_fao3xkFABU3jJ1X760U7dsKwCK" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
   proj1: {
     cat: 'Hobby / Innovation',
@@ -704,7 +693,7 @@ const projects = {
       <h2>Fabrication & Analysis of Efficiency of Tesla Bladeless Turbine</h2>
       <h3>Overview</h3>
       <p>A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype. This project involved practical engineering, building a functional prototype from scratch, and rigorously testing its output.</p>
-      <img src="https://drive.google.com/thumbnail?id=1ab3yJXnzvlYFvaEBCzgw1TWMmlmySpm2&sz=w1000" alt="Turbine Fabrication">
+      <img src="https://drive.google.com/uc?export=view&id=1ab3yJXnzvlYFvaEBCzgw1TWMmlmySpm2" alt="Turbine Fabrication">
       <h3>Fabrication Process</h3>
       <ul>
         <li>Built using a "best out of waste" approach — repurposed materials, casing, and shaft — making it highly low-cost.</li>
@@ -713,15 +702,15 @@ const projects = {
       </ul>
       <h3>Testing and Efficiency</h3>
       <p>Conducted rigorous speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations of boundary layer principles.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1_5JdRQ0SABQ5NlgMBz-ea6lohPD7ktna&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1_5JdRQ0SABQ5NlgMBz-ea6lohPD7ktna" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
   proj2: {
     cat: 'Academic Project &middot; PBL (MEDX37)',
     content: `
-      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation</h2>
+      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation Generation</h2>
       <h3>Concept & Analysis</h3>
       <p>An academic research project (MEDX37) exploring the feasibility of using Nikola Tesla's bladeless turbine design for domestic wind energy generation. The study analyzes how wind energy can be harnessed through aerodynamic flow and vortex shedding instead of traditional blades.</p>
-      <img src="https://drive.google.com/thumbnail?id=1pEbywOn4qv3Ov77EmklVF2VtDQapwoG&sz=w1000" alt="Turbine">
+      <img src="https://drive.google.com/uc?export=view&id=1pEbywOn4qv3Ov77EmklVF2VtDQapwoG" alt="Turbine">
       <h3>Design Features</h3>
       <ul>
         <li>Enlarged inlet port: designed to capture low-velocity urban winds more efficiently.</li>
@@ -731,15 +720,15 @@ const projects = {
       </ul>
       <h3>Technical Analysis</h3>
       <p>Evaluated aerodynamic efficiency and power output metrics based on standard fluid mechanics formulas. Explored methods to optimize torque generation under varying wind load conditions, bridging theoretical physics with mechanical design.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1234XFm9K-jDe5CUj7XNkuZYONVVjT3Uq&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1234XFm9K-jDe5CUj7XNkuZYONVVjT3Uq" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
   proj3: {
     cat: 'Competition',
     content: `
-      <h2>Smart India Hackathon (SIH) Challenge</h2>
+      <h2>Tension-Based Fault Alert System for LV Power Transmission Lines (SIH2025)</h2>
       <h3>Overview</h3>
       <p>A comprehensive team project for the Smart India Hackathon involving the identification of critical industrial or infrastructural problems and the proposition of an innovative, scalable engineering solution.</p>
-      <img src="https://drive.google.com/thumbnail?id=1Dig6jetkv658KlokDooq3ylIPxNOOlpt&sz=w1000" alt="SIH Concept">
+      <img src="https://drive.google.com/uc?export=view&id=1Dig6jetkv658KlokDooq3ylIPxNOOlpt" alt="SIH Concept">
       <h3>Problem Statement & Strategy</h3>
       <ul>
         <li>Analyzed complex problem domains to formulate structured, actionable engineering challenges.</li>
@@ -749,33 +738,16 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Successfully delivered a well-structured technical proposal demonstrating strong analytical thinking, structured problem framing, and team-based engineering communication.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1ylC_H_uvafs057VxlkleXQSO5qSbaSAC&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1ylC_H_uvafs057VxlkleXQSO5qSbaSAC" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
-  proj4: {
-    cat: 'Academic Project &middot; PBL (MED3102)',
-    content: `
-      <h2>Design of Mechatronic System: Automatic Door</h2>
-      <h3>Overview</h3>
-      <p>A compact microcontroller-based system designed to enhance convenience, safety, and independence for users who struggle with manually operating doors. Allows users to close and lock doors effortlessly via automated commands.</p>
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&q=80" alt="Mechatronics">
-      <h3>System Architecture</h3>
-      <p>Input Command &rarr; Microcontroller (Arduino/ESP32) &rarr; Motor Driver &rarr; Actuator &rarr; Locking Mechanism. Includes a sensor loop (Reed Switch or IR Sensor) to check the door state before triggering the actuation sequence.</p>
-      <h3>Key Components & Logic</h3>
-      <ul>
-        <li><strong>Microcontroller:</strong> Arduino Uno / ESP32.</li>
-        <li><strong>Sensors:</strong> Push Button, Magnetic Reed Switch, or IR Sensor.</li>
-        <li><strong>Actuators:</strong> Servo Motor, Linear Actuator, or Solenoid Lock.</li>
-        <li><strong>Logic:</strong> On receiving input, the system checks the door state via sensor. If open, it activates the motor to close, then triggers the solenoid lock to engage.</li>
-      </ul>
-    `
-  },
+  
   proj5: {
     cat: 'Academic &middot; Business Model',
     content: `
-      <h2>RideFar Business Model</h2>
+      <h2>RideFar - Fuel Monitoring Device Business Model</h2>
       <h3>Overview</h3>
-      <p>Developed as an entrepreneurial pitch, RideFar is an optimized transit business model focusing on bridging gaps in long-distance urban and intercity mobility. The project blends mechanical efficiency concepts with strategic business planning.</p>
-      <img src="https://drive.google.com/thumbnail?id=14iSsovoFkjqLMLiaKU28OPplSGc6E2lT&sz=w1000" alt="RideFar">
+      <p>Developed as an entrepreneurial pitch, RideFar - Fuel Monitoring Device is an optimized transit business model focusing on bridging gaps in long-distance urban and intercity mobility. The project blends mechanical efficiency concepts with strategic business planning.</p>
+      <img src="https://drive.google.com/uc?export=view&id=14iSsovoFkjqLMLiaKU28OPplSGc6E2lT" alt="RideFar - Fuel Monitoring Device">
       <h3>Scope of Work</h3>
       <ul>
         <li><strong>Market Analysis:</strong> Identified pain points in urban mobility, commuting trends, and vehicle utilization rates.</li>
@@ -784,15 +756,15 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Produced a structured business case that effectively translates complex operational and technical logistics into a viable commercial venture.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1SqsnlkPYSGXIFOybiTMYUxI64jgD2fss4&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://drive.google.com/thumbnail?id=1p7J4fY7xlaCeJex2RvubH61axl_el3Mx&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1SqsnlkPYSGXIFOybiTMYUxI64jgD2fss4" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://drive.google.com/uc?export=view&id=1p7J4fY7xlaCeJex2RvubH61axl_el3Mx" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
   proj6: {
     cat: 'Academic &middot; Business Model',
     content: `
-      <h2>Comfeasy Business Project</h2>
+      <h2>ComfEasy - Ergonomic Modular Massager Business Project</h2>
       <h3>Overview</h3>
-      <p>Developed during the Wadhwani Foundation Entrepreneurship Skills course, Comfeasy is a business-driven ergonomic project focused on designing and marketing products that alleviate physical strain in modern lifestyles.</p>
-      <img src="https://drive.google.com/thumbnail?id=1yQXnOqhRjAblDC8uW5wZ6dv10JmKqzYY&sz=w1000" alt="Comfeasy">
+      <p>Developed during the Wadhwani Foundation Entrepreneurship Skills course, ComfEasy - Ergonomic Modular Massager is a business-driven ergonomic project focused on designing and marketing products that alleviate physical strain in modern lifestyles.</p>
+      <img src="https://drive.google.com/uc?export=view&id=1yQXnOqhRjAblDC8uW5wZ6dv10JmKqzYY" alt="ComfEasy - Ergonomic Modular Massager">
       <h3>Key Contributions</h3>
       <ul>
         <li>Ergonomic product design conceptualization targeting workplace and lifestyle comfort.</li>
@@ -801,15 +773,15 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Demonstrated the ability to merge mechanical design principles with actionable entrepreneurial strategies, bridging the gap between human comfort and commercial viability.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1v7FXkAUqlBxSR7wmJQ0bCPkWt74G9avC&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1v7FXkAUqlBxSR7wmJQ0bCPkWt74G9avC" alt="Detail" style="margin-top:1.5rem;">\n    `
   },
   proj7: {
     cat: 'Internship &middot; HMIL',
     content: `
-      <h2>Hyundai Motors India Ltd. Internship</h2>
+      <h2>Ergonomic and Process Optimisation @ HMIL</h2>
       <h3>Overview</h3>
       <p>A comprehensive industrial internship at Hyundai Motor India Limited (HMIL) Assembly Shop, gaining hands-on exposure to high-volume automotive manufacturing, assembly line efficiency, and operational workflows.</p>
-      <img src="https://drive.google.com/thumbnail?id=1mtkjQNVNCgNGCJn6c0CX2Pm4FDdFOS98&sz=w1000" alt="Manufacturing">
+      <img src="https://drive.google.com/uc?export=view&id=1mtkjQNVNCgNGCJn6c0CX2Pm4FDdFOS98" alt="Manufacturing">
       <h3>Key Learnings & Activities</h3>
       <ul>
         <li>Observed the full production workflow spanning Trim, Chassis, Engine Sub, Door Sub, and Final assembly lines.</li>
@@ -819,7 +791,7 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Acquired practical, shop-floor experience linking academic engineering principles to large-scale, automated industrial production processes.</p>
-    \n      <img src="https://drive.google.com/thumbnail?id=1JzVe5du8qopOL2brRH03kBUwCX3SdPg1&sz=w1000" alt="Detail" style="margin-top:1.5rem;">\n    `
+    \n      <img src="https://drive.google.com/uc?export=view&id=1JzVe5du8qopOL2brRH03kBUwCX3SdPg1" alt="Detail" style="margin-top:1.5rem;">\n    `
   }
 };
 
