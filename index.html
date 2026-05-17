@@ -164,28 +164,29 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 .sub-head{font-size:1rem;font-weight:600;margin-bottom:1.5rem;color:var(--text)}
 @media(max-width:900px){
   .menu-toggle{display:block}
-  .nav-links{display:flex;flex-direction:column;position:fixed;top:64px;right:0;width:70%;bottom:0;background:rgba(12,12,14,0.95);backdrop-filter:blur(10px);z-index:99;padding:2rem;gap:1.5rem;transform:translateX(100%);pointer-events:none;transition:transform .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line)}
+  .nav-links{display:flex;flex-direction:column;align-items:flex-end;text-align:right;position:fixed;top:64px;right:0;width:65%;bottom:0;background:rgba(15,15,18,0.98);backdrop-filter:blur(10px);z-index:99;padding:2rem;gap:1.5rem;transform:translateX(100%);pointer-events:none;transition:transform .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--line)}
   .nav-links.active{transform:translateX(0);pointer-events:all}
   #cursorDot{display:none !important}
   .has-dropdown{position:static}
-  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-left:1rem;border-left:1px solid var(--line);border-radius:0;margin-top:.5rem;display:none}
-  .has-dropdown.open .dropdown{display:flex}
+  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-right:1rem;border-right:1px solid var(--line);border-left:none;border-radius:0;margin-top:.5rem;display:none;align-items:flex-end;text-align:right}
+  .has-dropdown.open .dropdown{display:flex;flex-direction:column}
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
   #hero{padding:0 2rem;padding-top:64px}
 }
 @media(max-width:560px){
+  #hero{padding-top:20px}
   .proj-grid{grid-template-columns:1fr}
   .btn-hire{display:none}
   .deck-card { flex: 0 0 85vw; }
   .deck.stacked .deck-card { margin-left: -85vw; }
   .hero-eyebrow{font-size:0.6rem;gap:0.5rem}
   .hero-name{font-size:2.6rem !important}
-  .hero-tagline{font-size:0.55rem !important;white-space:nowrap;letter-spacing:0.02em !important}
-  .hero-sub{font-size:0.6rem;white-space:nowrap}
-  .stat-num{font-size:1.1rem}
-  .stat-label{font-size:0.55rem;white-space:nowrap}
-  .hero-stats{gap:1rem;justify-content:space-between}
+  .hero-tagline{font-size:0.65rem !important;white-space:nowrap;letter-spacing:0.02em !important;width:100%}
+  .hero-sub{font-size:0.7rem;white-space:nowrap;width:100%}
+  .stat-num{font-size:1.4rem}
+  .stat-label{font-size:0.7rem;white-space:nowrap}
+  .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;justify-content:space-between;width:100%}
   .sec-title{font-size:1.4rem;white-space:normal;line-height:1.2}
   .sec-num{font-size:0.6rem}
   .sub-head{font-size:0.95rem}
@@ -259,7 +260,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <a href="#contact" class="btn-ghost">Get in Touch</a>
     </div>
     <div class="hero-stats" id="statsRow">
-      <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA</div></div>
+      <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA<br>till sem-5</div></div>
       <div><div class="stat-num"><span class="counter" data-target="3" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
       <div><div class="stat-num"><span class="counter" data-target="8" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
       <div><div class="stat-num"><span class="counter" data-target="18" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
@@ -321,12 +322,12 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <button class="filter-btn" data-filter="academic">Academic</button>
     </div>
 
+    
     <div class="proj-grid">
-      <!-- 1. Proj 6: MARS -->
-      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
-        <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=700&q=80" alt="Mars Rover" loading="lazy">
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj0')">
+        <img src="https://drive.google.com/thumbnail?id=1T4IoTHMzytihrC6_J1Ifsr__QU3S4bcF&sz=w800" alt="M.A.R.S Hackathon" loading="lazy">
         <div class="proj-body">
-          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
+          <div class="proj-cat">Competition &middot; 2nd Place 🥈</div>
           <h3 class="proj-title">M.A.R.S Hackathon (Habitat &amp; Shelter Design)</h3>
           <p class="proj-desc">Participated in a habitat site selection and shelter design challenge for the lunar/Mars surface, securing 2nd place with Team Beyonders.</p>
           <div class="proj-tags">
@@ -336,99 +337,92 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
         </div>
       </div>
 
-      <!-- 2. Proj 7: SIH -->
-      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj7')">
-        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80" alt="Smart Grid" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Competing Project &middot; SIH 2025</div>
-          <h3 class="proj-title">SIH 2025 — Voltex Smart Grid Idea</h3>
-          <p class="proj-desc">Presented "Voltex" — a smart energy grid management concept — covering renewable integration, demand response, and real-time load balancing.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Smart Grid</span><span class="proj-tag">Energy Management</span><span class="proj-tag">Innovation</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- 3. Proj 1: Smart Door -->
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj1')">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Smart Door" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; PBL</div>
-          <h3 class="proj-title">Smart Automatic Door Closer &amp; Locker System</h3>
-          <p class="proj-desc">Microcontroller-based door automation enabling hands-free operation via push-button or mobile command — designed for accessibility in compact environments.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Arduino Uno</span><span class="proj-tag">ESP32</span><span class="proj-tag">Servo Motor</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- 4. Proj 0: Comfeasy -->
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj0')">
-        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Comfeasy Ergonomic" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; Business</div>
-          <h3 class="proj-title">Comfeasy Ergonomic Business Project</h3>
-          <p class="proj-desc">Developed during the Wadhwani Foundation Entrepreneurship course, designed an ergonomic product ecosystem aimed at improving workplace comfort.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Ergonomics</span><span class="proj-tag">Product Design</span><span class="proj-tag">Business Model</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- 5. Proj 5: HMIL -->
-      <div class="proj-card" data-cat="internship" onclick="openDrawer('proj5')">
-        <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=700&q=80" alt="Hyundai HMIL" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Industrial Internship &middot; Hyundai Motor</div>
-          <h3 class="proj-title">Worker Ergonomics Improvement at HMIL</h3>
-          <p class="proj-desc">Applied Six Sigma DMAIC and REBA assessment tool at HMIL Assembly Shop #2 to identify and reduce musculoskeletal fatigue.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">REBA Tool</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- 6. Proj 3: Tesla Turbine Academic (MEDX37) -->
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj3')">
-        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Wind Turbine" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; MEDX37</div>
-          <h3 class="proj-title">Usage of Tesla Turbine for Domestic Wind Energy Generation</h3>
-          <p class="proj-desc">Academic project exploring the feasibility of a bladeless turbine design using vortex shedding and drag force for domestic energy generation.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Tesla Turbine</span><span class="proj-tag">Renewable Energy</span><span class="proj-tag">MEDX37</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- 7. Proj 8: Tesla Turbine Hobby -->
-      <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj8')">
-        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=700&q=80" alt="Fabrication Turbine" loading="lazy">
+      <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj1')">
+        <img src="https://drive.google.com/thumbnail?id=1KWYrGWFK3f0faACHedMnhKrbWGpGbq1F&sz=w800" alt="Tesla Turbine Hobby" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Hobby / Innovation</div>
-          <h3 class="proj-title">Fabricate and Analysis of Efficiency of Tesla Bladeless Turbine</h3>
-          <p class="proj-desc">A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype.</p>
+          <h3 class="proj-title">Fabrication &amp; Efficiency Analysis of Tesla Bladeless Turbine</h3>
+          <p class="proj-desc">Designed, fabricated, and analyzed a physical prototype of a Tesla Bladeless Turbine to understand boundary layer effect and fluid-rotor adhesion.</p>
           <div class="proj-tags">
-            <span class="proj-tag">Fabrication</span><span class="proj-tag">Efficiency Analysis</span><span class="proj-tag">Tesla Turbine</span>
+            <span class="proj-tag">Fabrication</span><span class="proj-tag">Prototyping</span><span class="proj-tag">Testing</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
       </div>
 
-      <!-- 8. Proj 4: RideFar -->
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj4')">
-        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=700&q=80" alt="RideFar" loading="lazy">
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj2')">
+        <img src="https://drive.google.com/thumbnail?id=1aSfpTqa83zwpi_3Jwt5aiS-JzyVHnVPZ&sz=w800" alt="Tesla Turbine PBL" loading="lazy">
         <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; Business</div>
-          <h3 class="proj-title">RideFar — Fuel Monitor Project</h3>
-          <p class="proj-desc">Developed during the Wadhwani Foundation Entrepreneurship course, acted as a co-partner assisting in developing a fuel monitoring solution.</p>
+          <div class="proj-cat">Academic Project &middot; PBL (MEDX37)</div>
+          <h3 class="proj-title">Usage of Tesla Turbine for Domestic Wind Energy</h3>
+          <p class="proj-desc">A project-based learning initiative focused on optimizing boundary-layer turbines for domestic renewable wind energy extraction.</p>
           <div class="proj-tags">
-            <span class="proj-tag">EV Mobility</span><span class="proj-tag">Business Model</span><span class="proj-tag">Pitch Deck</span>
+            <span class="proj-tag">PBL</span><span class="proj-tag">Renewable Energy</span><span class="proj-tag">Fluid Mechanics</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj3')">
+        <img src="https://drive.google.com/thumbnail?id=1UUBo49-5dQ0ArXf0G9Pla3VHX2GKHWzT&sz=w800" alt="SIH Challenge" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competition</div>
+          <h3 class="proj-title">Smart India Hackathon (SIH) Project</h3>
+          <p class="proj-desc">Developed an innovative, problem-solving mechanism addressing real-world industrial challenges through optimized design and automated solutions.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Innovation</span><span class="proj-tag">Problem Solving</span><span class="proj-tag">Design</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj4')">
+        <img src="https://drive.google.com/thumbnail?id=1g00Ooq5X_4NAfa_Z_TP9ZOi4Uq62bVN9&sz=w800" alt="Automatic Door" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Academic Project &middot; PBL</div>
+          <h3 class="proj-title">Design of Mechatronic System: Automatic Door</h3>
+          <p class="proj-desc">Engineered an automated door system integrating mechatronic principles, sensors, and actuators for seamless and responsive operation.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Mechatronics</span><span class="proj-tag">Sensors</span><span class="proj-tag">Automation</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj5')">
+        <img src="https://drive.google.com/thumbnail?id=1T46xW-KgUL1UxwnnD8eaSy6xeoHbyVlA&sz=w800" alt="RideFar" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Academic &middot; Business Model</div>
+          <h3 class="proj-title">RideFar</h3>
+          <p class="proj-desc">Entrepreneurial business model focusing on long-distance, optimized transit solutions leveraging engineering logistics and efficiency.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Business Model</span><span class="proj-tag">Logistics</span><span class="proj-tag">Entrepreneurship</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj6')">
+        <img src="https://drive.google.com/thumbnail?id=1vE0gZ1UCQbP6YASufA6EPbrbOaKx9eD1&sz=w800" alt="Comfeasy" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Academic &middot; Business Model</div>
+          <h3 class="proj-title">Comfeasy</h3>
+          <p class="proj-desc">Developed a comprehensive business strategy for ergonomic and comfortable daily utility products designed for modern lifestyles.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Business Model</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Entrepreneurship</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="internship" onclick="openDrawer('proj7')">
+        <img src="https://drive.google.com/thumbnail?id=1z6Atx0MX_J6w-k4C6MMN0qoAP6IX9l6k&sz=w800" alt="Internship HMIL" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Internship</div>
+          <h3 class="proj-title">Hyundai Motors India Ltd. Internship</h3>
+          <p class="proj-desc">Hands-on automotive manufacturing experience, analyzing assembly line efficiency and operational workflow at the HMIL facility.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Automotive</span><span class="proj-tag">Manufacturing</span><span class="proj-tag">Analysis</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -687,152 +681,12 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 // Project Data
 const projects = {
   proj0: {
-    cat: 'Academic Project &middot; Business',
-    content: `
-      <h2>Comfeasy Ergonomic Business Project</h2>
-      <h3>Overview</h3>
-      <p>Developed as part of the Wadhwani Foundation Entrepreneurship Skills course, Comfeasy is a business-driven ergonomic project focused on designing and marketing products that alleviate workplace physical strain. Combining mechanical design principles with business strategy, the project aims to bridge the gap between human comfort and productivity.</p>
-      <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Ergonomics">
-      <h3>Key Contributions</h3>
-      <ul>
-        <li>Ergonomic product design conceptualization.</li>
-        <li>Business model and market analysis targeting corporate workspaces.</li>
-        <li>Financial viability and prototyping strategies.</li>
-      </ul>
-    `
-  },
-  proj1: {
-    cat: 'Academic Project &middot; PBL (MED3102 Mechatronics)',
-    content: `
-      <h2>Smart Automatic Door Closer & Locker System</h2>
-      <h3>Overview</h3>
-      <p>A compact microcontroller-based system designed to enhance convenience, safety, and independence for children, elderly individuals, and wheelchair users who struggle with manually operating doors. Allows users to close and lock doors effortlessly via push-button or mobile phone command — reducing physical strain in homes, hospitals, and public facilities.</p>
-      <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?w=700&q=80" alt="Arduino">
-      <h3>System Architecture</h3>
-      <p>[Button / Mobile App] &rarr; [Microcontroller (Arduino/ESP32)] &rarr; [Motor Driver] &rarr; [Servo/Solenoid] &rarr; [Locking Mechanism]. Reed Switch or IR Sensor checks door state before triggering actuation sequence.</p>
-      <h3>Key Components</h3>
-      <ul>
-        <li>Microcontroller: Arduino Uno / ESP32 (built-in Wi-Fi + Bluetooth)</li>
-        <li>Sensors: Push Button &middot; Magnetic Reed Switch / IR Sensor</li>
-        <li>Actuators: Servo Motor / Linear Actuator / Solenoid Lock</li>
-        <li>Communication: Bluetooth HC-05 / ESP32 Wi-Fi</li>
-      </ul>
-      <h3>Working Logic</h3>
-      <p>On receiving input (button press or Bluetooth serial command "C"), Arduino checks door state via sensor. If open, activates motor for ~1.5s to close, then triggers solenoid lock to engage. Full logic implemented in Arduino C with serial Bluetooth communication.</p>
-      <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80" alt="Circuit">
-      <h3>Limitations & Improvements</h3>
-      <ul>
-        <li>Servo torque insufficient for heavy doors &rarr; upgrade to linear actuator</li>
-        <li>Bluetooth limited to ~10m range &rarr; upgrade to ESP32 Wi-Fi</li>
-        <li>Sensor misalignment in dusty conditions &rarr; add closed-loop encoder feedback</li>
-        <li>Power dependency &rarr; integrate battery backup module</li>
-      </ul>
-    `
-  },
-  proj2: {
-    cat: 'Academic Project &middot; PBL (MED3103 Automation in Manufacturing)',
-    content: `
-      <h2>Automated Door System using USA Principle</h2>
-      <h3>Overview</h3>
-      <p>Design and implementation of an automation system formally structured around the USA Principle (Understand, Simplify, Automate) — applied to the real-world challenge of manual door operation in compact or high-traffic settings.</p>
-      <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=700&q=80" alt="Robotics">
-      <h3>USA Principle Breakdown</h3>
-      <ul>
-        <li><strong>Understand:</strong> Manual door closing is physically demanding and inaccessible for mobility-limited users in compact spaces</li>
-        <li><strong>Simplify:</strong> Reduced interaction to a single-button interface with optional mobile control, removing physical effort entirely</li>
-        <li><strong>Automate:</strong> Microcontroller logic with sensor-actuator feedback closes and locks the door without human involvement</li>
-      </ul>
-      <h3>System Design</h3>
-      <p>Same hardware platform as MED3102 (Arduino Uno/ESP32, Reed Switch, Servo/Solenoid), with the added layer of formal USA methodology documentation including block diagram, component justification, and control logic explanation.</p>
-      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80" alt="Components">
-      <h3>Outcome</h3>
-      <p>Demonstrated a closed-loop automated system: input detection &rarr; sensor validation &rarr; actuator trigger &rarr; lock engagement. Limitations and proposed closed-loop upgrades fully documented as part of the automation methodology.</p>
-    `
-  },
-  proj3: {
-    cat: 'Academic Project &middot; MEDX37',
-    content: `
-      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation</h2>
-      <h3>Concept & Analysis</h3>
-      <p>An academic research project (MEDX37) exploring the feasibility of using Nikola Tesla's bladeless turbine design for domestic wind energy generation. The study analyzes how wind energy can be harnessed through aerodynamic flow and vortex shedding instead of traditional blades.</p>
-      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Turbine">
-      <h3>Design Features</h3>
-      <ul>
-        <li>Enlarged inlet port: designed to capture low-velocity urban winds more efficiently.</li>
-        <li>Aerodynamic shell: auto-aligns with wind direction for maximum intake.</li>
-        <li>Discs array: interacts with wind forces via drag and vortex shedding &rarr; converted to electricity via coil-magnet induction.</li>
-        <li>Modular design: 10–20 units in-line on a terrace can produce 75–150W (enough for lighting or device charging).</li>
-      </ul>
-      <h3>Technical Analysis</h3>
-      <p>Power formula: P = &frac12;&rho;Av&sup3;. At v = 5 m/s with 0.5 m&sup2; inlet area, meaningful supplemental power is achievable per unit. Practical efficiency: ~20–30% (Tesla theorised 89–95% at 10k–50k RPM — impractical at domestic breeze speeds).</p>
-    `
-  },
-  proj8: {
-    cat: 'Hobby Innovation &middot; Renewable Energy',
-    content: `
-      <h2>Fabricate and Analysis of Efficiency of Tesla Bladeless Turbine</h2>
-      <h3>Overview</h3>
-      <p>A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype. This project involved practical engineering, building a functional prototype from scratch, and rigorously testing its output.</p>
-      <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=700&q=80" alt="Turbine Fabrication">
-      <h3>Fabrication Process</h3>
-      <ul>
-        <li>Built using a "best out of waste" approach — repurposed materials, foam sheet casing, plastic shaft — making it low-cost.</li>
-        <li>Custom components designed for housing the generator and maintaining disc spacing.</li>
-        <li>Assembly of the internal rotor mechanism focusing on minimizing friction and kinetic losses.</li>
-      </ul>
-      <h3>Testing and Efficiency</h3>
-      <p>Conducted various stress and speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations.</p>
-    `
-  },
-  proj4: {
-    cat: 'Academic Project &middot; Business',
-    content: `
-      <h2>RideFar — Fuel Monitor Project</h2>
-      <h3>Overview</h3>
-      <p>Developed during the Wadhwani Foundation Entrepreneurship Skills course, I assisted the core team as a co-partner in the development of the RideFar Fuel Monitor project. This system is designed to track, analyze, and optimize fuel usage across vehicles.</p>
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="EV Pitch">
-      <h3>Scope of Work</h3>
-      <ul>
-        <li>Market analysis: urban mobility pain points, EV adoption curves, target commuter segments</li>
-        <li>Product design rationale: range, charging infrastructure, vehicle spec trade-offs</li>
-        <li>Business model: subscription vs pay-per-ride, B2B fleet partnerships</li>
-        <li>Financial projections: unit economics, capex/opex, break-even timeline</li>
-        <li>Go-to-market: pilot city selection, launch strategy, growth levers</li>
-      </ul>
-      <h3>Outcome</h3>
-      <p>A structured, investor-style pitch deck demonstrating the ability to communicate complex technical-commercial trade-offs to both engineering and non-engineering stakeholders.</p>
-      <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&q=80" alt="Business">
-    `
-  },
-  proj5: {
-    cat: 'Industrial Internship &middot; Hyundai Motor India Ltd.',
-    content: `
-      <h2>Worker Ergonomics Improvement at HMIL</h2>
-      <h3>Organisation</h3>
-      <p>Hyundai Motor India Limited (HMIL) is India's second largest automobile manufacturer. Chennai plant: ~8 lakh cars/year, exports to 150+ countries. Assembly Shop #2 produces Grand i10 NIOS, i20, CRETA, VERNA and EXTER at 66 UPH (one car every 54–56 seconds).</p>
-      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=700&q=80" alt="Manufacturing">
-      <h3>Internship Details</h3>
-      <p>Duration: 23 Jun – 09 Jul 2025 (17 days). Department: Assembly Shop #2. Observed full workflow: TRIM 1&2, ENGINE SUB, CHASSIS 1&2, DOOR SUB, FINAL 1&2, OK 1&2, TEST LINE, REPAIR, FIL. Final day: Engine Shop #2 — Kappa petrol and diesel engine assembly.</p>
-      <h3>DMAIC Application</h3>
-      <ul>
-        <li><strong>Define:</strong> Musculoskeletal fatigue among Assembly Shop #2 workers due to repetitive tasks and awkward postures — directly impacting efficiency and UPH productivity</li>
-        <li><strong>Measure:</strong> REBA tool applied at TRIM 1, CHASSIS 1 and FINAL 1 — scoring neck, trunk, legs (Group A) and arms, wrists (Group B). Target: TRIM 1 Station 12 (Roof Liner Wiring Harness Fixing) — REBA Score 9 (High Risk)</li>
-        <li><strong>Analyse:</strong> Root cause — poor alignment between car body height and worker posture forcing sustained overhead reach, kneeling and trunk rotation. Fast UPH pace (66/hr) compounds ergonomic risk</li>
-        <li><strong>Improve:</strong> (1) Height-adjustable platform bringing worker CG closer to roof level. (2) Articulating torque arm absorbing reaction force, reducing wrist/shoulder strain. Predicted REBA score reduction: 9 &rarr; 4–5 (Medium Risk)</li>
-        <li><strong>Control:</strong> New SOPs for platform and tooling use. Quarterly REBA re-assessment plan. App-based monitoring for sustained compliance</li>
-      </ul>
-      <img src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=700&q=80" alt="Ergonomics">
-      <h3>Engineering Concepts Applied</h3>
-      <p>Industrial Ergonomics (REBA) &middot; Six Sigma DMAIC &middot; Biomechanics &middot; Human Factors Engineering &middot; Process Flow Analysis</p>
-    `
-  },
-  proj6: {
-    cat: 'Competing Project &middot; M.A.R.S Hackathon — 2nd Place 🥈',
+    cat: 'Competition &middot; 2nd Place 🥈',
     content: `
       <h2>M.A.R.S Hackathon (Habitat & Shelter Design)</h2>
       <h3>Overview</h3>
       <p>Participated in the M.A.R.S (Mechanical Aerospace Robotics Systems) Hackathon — a competitive event requiring teams to develop solutions for habitat site selection and shelter design on the lunar/Mars surface. The team "Beyonders" secured 2nd place.</p>
-      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&q=80" alt="Space">
+      <img src="https://drive.google.com/thumbnail?id=1T4IoTHMzytihrC6_J1Ifsr__QU3S4bcF&sz=w1000" alt="Space">
       <h3>Technical Work</h3>
       <ul>
         <li>Analysed terrain and site conditions for optimal habitat placement using DTM data.</li>
@@ -840,31 +694,131 @@ const projects = {
         <li>Performed terrain analysis using MATLAB — analysing slope gradients, surface roughness, and traversability indices for a 10km &times; 10km sector.</li>
         <li>Evaluated interior layout for life support, electronics, and power systems.</li>
       </ul>
-      <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=700&q=80" alt="Rover">
       <h3>Outcome</h3>
-      <p>Team Beyonders' Phase 1 submission (MARS_Phase1_beyonders_final.pdf) was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
+      <p>Team Beyonders' Phase 1 submission was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
+    `
+  },
+  proj1: {
+    cat: 'Hobby / Innovation',
+    content: `
+      <h2>Fabrication & Analysis of Efficiency of Tesla Bladeless Turbine</h2>
+      <h3>Overview</h3>
+      <p>A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype. This project involved practical engineering, building a functional prototype from scratch, and rigorously testing its output.</p>
+      <img src="https://drive.google.com/thumbnail?id=1KWYrGWFK3f0faACHedMnhKrbWGpGbq1F&sz=w1000" alt="Turbine Fabrication">
+      <h3>Fabrication Process</h3>
+      <ul>
+        <li>Built using a "best out of waste" approach — repurposed materials, casing, and shaft — making it highly low-cost.</li>
+        <li>Custom components designed for housing the generator and maintaining precise disc spacing for optimal fluid boundary-layer adhesion.</li>
+        <li>Assembly of the internal rotor mechanism focusing on minimizing friction and kinetic losses.</li>
+      </ul>
+      <h3>Testing and Efficiency</h3>
+      <p>Conducted rigorous speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations of boundary layer principles.</p>
+    `
+  },
+  proj2: {
+    cat: 'Academic Project &middot; PBL (MEDX37)',
+    content: `
+      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation</h2>
+      <h3>Concept & Analysis</h3>
+      <p>An academic research project (MEDX37) exploring the feasibility of using Nikola Tesla's bladeless turbine design for domestic wind energy generation. The study analyzes how wind energy can be harnessed through aerodynamic flow and vortex shedding instead of traditional blades.</p>
+      <img src="https://drive.google.com/thumbnail?id=1aSfpTqa83zwpi_3Jwt5aiS-JzyVHnVPZ&sz=w1000" alt="Turbine">
+      <h3>Design Features</h3>
+      <ul>
+        <li>Enlarged inlet port: designed to capture low-velocity urban winds more efficiently.</li>
+        <li>Aerodynamic shell: auto-aligns with wind direction for maximum intake.</li>
+        <li>Discs array: interacts with wind forces via drag and vortex shedding &rarr; converted to electricity via induction.</li>
+        <li>Modular design: Multiple units in-line can produce sufficient power for lighting or device charging.</li>
+      </ul>
+      <h3>Technical Analysis</h3>
+      <p>Evaluated aerodynamic efficiency and power output metrics based on standard fluid mechanics formulas. Explored methods to optimize torque generation under varying wind load conditions, bridging theoretical physics with mechanical design.</p>
+    `
+  },
+  proj3: {
+    cat: 'Competition',
+    content: `
+      <h2>Smart India Hackathon (SIH) Challenge</h2>
+      <h3>Overview</h3>
+      <p>A comprehensive team project for the Smart India Hackathon involving the identification of critical industrial or infrastructural problems and the proposition of an innovative, scalable engineering solution.</p>
+      <img src="https://drive.google.com/thumbnail?id=1UUBo49-5dQ0ArXf0G9Pla3VHX2GKHWzT&sz=w1000" alt="SIH Concept">
+      <h3>Problem Statement & Strategy</h3>
+      <ul>
+        <li>Analyzed complex problem domains to formulate structured, actionable engineering challenges.</li>
+        <li>Developed a conceptual framework integrating mechanical design with modern technology stacks.</li>
+        <li>Designed a system architecture focused on efficiency, cost-effectiveness, and real-world applicability.</li>
+        <li>Created a compelling pitch detailing technical feasibility, implementation roadmap, and impact metrics.</li>
+      </ul>
+      <h3>Outcome</h3>
+      <p>Successfully delivered a well-structured technical proposal demonstrating strong analytical thinking, structured problem framing, and team-based engineering communication.</p>
+    `
+  },
+  proj4: {
+    cat: 'Academic Project &middot; PBL (MED3102)',
+    content: `
+      <h2>Design of Mechatronic System: Automatic Door</h2>
+      <h3>Overview</h3>
+      <p>A compact microcontroller-based system designed to enhance convenience, safety, and independence for users who struggle with manually operating doors. Allows users to close and lock doors effortlessly via automated commands.</p>
+      <img src="https://drive.google.com/thumbnail?id=1g00Ooq5X_4NAfa_Z_TP9ZOi4Uq62bVN9&sz=w1000" alt="Mechatronics">
+      <h3>System Architecture</h3>
+      <p>Input Command &rarr; Microcontroller (Arduino/ESP32) &rarr; Motor Driver &rarr; Actuator &rarr; Locking Mechanism. Includes a sensor loop (Reed Switch or IR Sensor) to check the door state before triggering the actuation sequence.</p>
+      <h3>Key Components & Logic</h3>
+      <ul>
+        <li><strong>Microcontroller:</strong> Arduino Uno / ESP32.</li>
+        <li><strong>Sensors:</strong> Push Button, Magnetic Reed Switch, or IR Sensor.</li>
+        <li><strong>Actuators:</strong> Servo Motor, Linear Actuator, or Solenoid Lock.</li>
+        <li><strong>Logic:</strong> On receiving input, the system checks the door state via sensor. If open, it activates the motor to close, then triggers the solenoid lock to engage.</li>
+      </ul>
+    `
+  },
+  proj5: {
+    cat: 'Academic &middot; Business Model',
+    content: `
+      <h2>RideFar Business Model</h2>
+      <h3>Overview</h3>
+      <p>Developed as an entrepreneurial pitch, RideFar is an optimized transit business model focusing on bridging gaps in long-distance urban and intercity mobility. The project blends mechanical efficiency concepts with strategic business planning.</p>
+      <img src="https://drive.google.com/thumbnail?id=1T46xW-KgUL1UxwnnD8eaSy6xeoHbyVlA&sz=w1000" alt="RideFar">
+      <h3>Scope of Work</h3>
+      <ul>
+        <li><strong>Market Analysis:</strong> Identified pain points in urban mobility, commuting trends, and vehicle utilization rates.</li>
+        <li><strong>Product Rationale:</strong> Engineered the conceptual logistics focusing on fleet efficiency and operational cost reduction.</li>
+        <li><strong>Financials & Strategy:</strong> Developed a comprehensive B2B/B2C business model including unit economics, capital expenditure, and go-to-market strategies.</li>
+      </ul>
+      <h3>Outcome</h3>
+      <p>Produced a structured business case that effectively translates complex operational and technical logistics into a viable commercial venture.</p>
+    `
+  },
+  proj6: {
+    cat: 'Academic &middot; Business Model',
+    content: `
+      <h2>Comfeasy Business Project</h2>
+      <h3>Overview</h3>
+      <p>Developed during the Wadhwani Foundation Entrepreneurship Skills course, Comfeasy is a business-driven ergonomic project focused on designing and marketing products that alleviate physical strain in modern lifestyles.</p>
+      <img src="https://drive.google.com/thumbnail?id=1vE0gZ1UCQbP6YASufA6EPbrbOaKx9eD1&sz=w1000" alt="Comfeasy">
+      <h3>Key Contributions</h3>
+      <ul>
+        <li>Ergonomic product design conceptualization targeting workplace and lifestyle comfort.</li>
+        <li>Comprehensive business model and competitive market analysis.</li>
+        <li>Prototyping strategy and financial viability projections.</li>
+      </ul>
+      <h3>Outcome</h3>
+      <p>Demonstrated the ability to merge mechanical design principles with actionable entrepreneurial strategies, bridging the gap between human comfort and commercial viability.</p>
     `
   },
   proj7: {
-    cat: 'Competing Project &middot; Smart India Hackathon 2025',
+    cat: 'Internship &middot; HMIL',
     content: `
-      <h2>SIH 2025 — Voltex Smart Grid Idea Presentation</h2>
+      <h2>Hyundai Motors India Ltd. Internship</h2>
       <h3>Overview</h3>
-      <p>For Smart India Hackathon 2025 (SIH2025), the team developed and presented "Voltex" — a smart grid energy management system concept addressing India's renewable energy integration challenges.</p>
-      <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=700&q=80" alt="Smart Grid">
-      <h3>Concept — Voltex</h3>
-      <p>A real-time smart grid management platform that dynamically balances supply from renewable sources (solar, wind) with grid demand through predictive load management and automated demand response. The concept targets grid stability during peak solar and low-demand periods — a key challenge in India's energy transition.</p>
-      <h3>Key Elements of the Presentation</h3>
+      <p>A comprehensive industrial internship at Hyundai Motor India Limited (HMIL) Assembly Shop, gaining hands-on exposure to high-volume automotive manufacturing, assembly line efficiency, and operational workflows.</p>
+      <img src="https://drive.google.com/thumbnail?id=1z6Atx0MX_J6w-k4C6MMN0qoAP6IX9l6k&sz=w1000" alt="Manufacturing">
+      <h3>Key Learnings & Activities</h3>
       <ul>
-        <li>Problem statement: Grid instability from intermittent renewables</li>
-        <li>Proposed solution: AI-assisted demand prediction + automated switching</li>
-        <li>Technical architecture: sensor layer &rarr; data processing &rarr; decision engine &rarr; actuator response</li>
-        <li>Impact metrics: estimated grid loss reduction, consumer savings, renewable integration %</li>
-        <li>Implementation roadmap: pilot &rarr; state &rarr; national scale</li>
+        <li>Observed the full production workflow spanning Trim, Chassis, Engine Sub, Door Sub, and Final assembly lines.</li>
+        <li>Analyzed repetitive tasks and line efficiency within a high UPH (Units Per Hour) manufacturing environment.</li>
+        <li>Explored practical applications of Industrial Ergonomics and process flow optimization.</li>
+        <li>Gained insights into the real-world execution of lean manufacturing and quality control standards.</li>
       </ul>
-      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Energy">
       <h3>Outcome</h3>
-      <p>Delivered a well-structured, technically credible innovation pitch for a national-level hackathon — strengthening skills in energy systems thinking, structured problem framing, and team-based engineering communication.</p>
+      <p>Acquired practical, shop-floor experience linking academic engineering principles to large-scale, automated industrial production processes.</p>
     `
   }
 };
