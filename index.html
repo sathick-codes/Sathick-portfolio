@@ -91,26 +91,38 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .drawer-content p,.drawer-content li{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:.5rem}
 .drawer-content ul{padding-left:1.2rem}
 #achievements{border-top:1px solid var(--line)}
-.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:3rem}
-.ach-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s}
-.ach-card:hover{border-color:rgba(255,255,255,0.15)}
+.deck-wrapper{position:relative;margin-bottom:4rem}
+.deck-overlay{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(12,12,14,0.4);backdrop-filter:blur(3px);cursor:pointer;border-radius:8px;transition:opacity .4s}
+.overlay-text{background:rgba(200,240,255,0.1);border:1px solid var(--blue);color:var(--blue);padding:.8rem 1.5rem;border-radius:30px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-align:center;animation:pulse 2s infinite;pointer-events:none}
+@keyframes pulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,240,255,.3)}70%{transform:scale(1.05);box-shadow:0 0 0 10px rgba(200,240,255,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,240,255,0)}}
+.deck{display:flex;overflow-x:auto;overflow-y:hidden;padding:1.5rem 1rem;gap:1.5rem;scroll-snap-type:x mandatory;scrollbar-width:none}
+.deck::-webkit-scrollbar{display:none}
+.deck-card{flex:0 0 300px;scroll-snap-align:center;transition:all .6s cubic-bezier(.25,1,.5,1);position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.deck-card:hover{border-color:rgba(255,255,255,.15)}
+.deck.stacked{overflow-x:hidden;gap:0}
+.deck.stacked .deck-card{margin-left:-300px;box-shadow:-5px 5px 20px rgba(0,0,0,.6);cursor:pointer}
+.deck.stacked .deck-card:first-child{margin-left:0}
+.deck.stacked .deck-card:nth-child(1){transform:rotate(-2deg);z-index:10}
+.deck.stacked .deck-card:nth-child(2){transform:rotate(1deg) translate(12px,4px);z-index:9}
+.deck.stacked .deck-card:nth-child(3){transform:rotate(-1deg) translate(24px,8px);z-index:8}
+.deck.stacked .deck-card:nth-child(4){transform:rotate(2deg) translate(36px,12px);z-index:7}
+.deck.stacked .deck-card:nth-child(5){transform:rotate(-1.5deg) translate(48px,16px);z-index:6}
+.deck.stacked .deck-card:nth-child(6){transform:rotate(1.5deg) translate(60px,20px);z-index:5}
+.deck.stacked .deck-card:nth-child(7){transform:rotate(-1deg) translate(72px,24px);z-index:4}
+.deck.stacked .deck-card:nth-child(8){transform:rotate(2deg) translate(84px,28px);z-index:3}
+.deck.stacked .deck-card:nth-child(n+9){transform:translate(90px,30px);opacity:0;z-index:1;pointer-events:none}
 .ach-badge{font-size:1.5rem;margin-bottom:.4rem;display:block}
 .ach-card-body{padding:.8rem}
 .ach-event{font-size:0.88rem;font-weight:600;margin-bottom:.3rem}
 .ach-desc{font-size:0.75rem;color:var(--text3);line-height:1.5}
 .ach-img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none}
-.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem}
-.cert-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;transition:border-color .2s}
-.cert-card:hover{border-color:rgba(255,255,255,0.15)}
 .cert-card img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none;display:block}
 .cert-info{padding:.7rem}
 .cert-title{font-size:0.82rem;font-weight:600;margin-bottom:.2rem}
 .cert-issuer{font-size:0.72rem;color:var(--text3);font-family:var(--mono)}
-.workshop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem}
-.ws-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
 .ws-card img{width:100%;aspect-ratio:4/3;object-fit:cover;cursor:none}
 .ws-card-body{padding:.7rem;font-size:0.8rem;font-weight:600}
-.memb-card{display:inline-flex;align-items:center;gap:1rem;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-top:1rem}
+.memb-card{display:flex;align-items:center;gap:1rem;margin-top:0}
 .memb-card img{width:80px;height:60px;object-fit:cover}
 .memb-card-text{padding:.6rem 1rem;font-size:0.82rem;font-weight:600}
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:500;display:none;align-items:center;justify-content:center}
@@ -144,26 +156,20 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   .nav-links{display:none}
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
-  .ach-grid,.cert-grid{grid-template-columns:repeat(2,1fr)}
   #hero{padding:0 2rem;padding-top:64px}
 }
 @media(max-width:560px){
   .proj-grid{grid-template-columns:1fr}
-  .ach-grid,.cert-grid,.workshop-grid{grid-template-columns:1fr}
   .hero-stats{gap:1.5rem}
   .btn-hire{display:none}
+  .deck-card { flex: 0 0 85vw; }
+  .deck.stacked .deck-card { margin-left: -85vw; }
 }
 
 .view-more-proj-wrap { display: flex; align-items: center; justify-content: center; margin-top: 2.5rem; position: relative; }
 .view-more-proj-wrap::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: var(--line); z-index: -1; }
 .view-more-proj-btn { background: var(--bg); border: 1px solid var(--line); color: var(--text3); padding: 0.4rem 1.2rem; border-radius: 20px; font-family: var(--mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; cursor: none; transition: all 0.2s; }
 .view-more-proj-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
-
-.view-more-cert-wrap { display: flex; align-items: center; justify-content: center; }
-.view-more-cert-btn { background: none; border: 1px solid var(--blue); color: var(--blue); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: none; transition: all 0.2s; }
-.view-more-cert-btn:hover { background: rgba(200,240,255,0.1); }
-.vm-icon { font-size: 1.2rem; line-height: 1; transition: transform 0.3s; }
-
 
 .hidden-card { display: none !important; }
 </style>
@@ -209,9 +215,9 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     </div>
     <div class="hero-stats" id="statsRow">
       <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA; till sem 5</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="3" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
       <div><div class="stat-num"><span class="counter" data-target="8" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="18" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
     </div>
   </div>
 </section>
@@ -394,112 +400,127 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     </div>
     
     <div class="sub-head">Competition Wins</div>
-    <div class="ach-grid">
-      <!-- Cards with real Drive thumbnails -->
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1J5kZujo6SfVaKttANorCBiwzhMpRUKzX&sz=w800" alt="Model Mania 1st" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥇 1st Place</span>
-          <div class="ach-event">Model Mania</div>
-          <div class="ach-desc">Physical bridge building challenge — top rank in execution and design</div>
-        </div>
+    <div class="deck-wrapper">
+      <div class="deck-overlay" onclick="revealDeck('deck-1')">
+        <div class="overlay-text">Swipe / Tap to Reveal &rarr;</div>
       </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1bBO97uWuq9mQuRGOXsCnYn3V7CNCLO2B&sz=w800" alt="Bridge Building" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥇 1st Place</span>
-          <div class="ach-event">Bridge Building</div>
-          <div class="ach-desc">Structural design competition — won for optimal load-bearing bridge design</div>
+      <div class="deck stacked" id="deck-1" onclick="revealDeck('deck-1')">
+        <!-- Cards with real Drive thumbnails -->
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1J5kZujo6SfVaKttANorCBiwzhMpRUKzX&sz=w800" alt="Model Mania 1st" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥇 1st Place</span>
+            <div class="ach-event">Model Mania</div>
+            <div class="ach-desc">Physical bridge building challenge — top rank in execution and design</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1sOmkX-EL9aQIbbXlJm9Z5s-bLZCj5uFH&sz=w800" alt="Bridge IT" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥇 1st Place</span>
-          <div class="ach-event">Bridge IT</div>
-          <div class="ach-desc">Engineering innovation bridge challenge — 1st place for design and execution</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1bBO97uWuq9mQuRGOXsCnYn3V7CNCLO2B&sz=w800" alt="Bridge Building" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥇 1st Place</span>
+            <div class="ach-event">Bridge Building</div>
+            <div class="ach-desc">Structural design competition — won for optimal load-bearing bridge design</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=127V7Laz9NA4oZBbkyjdd5OVHu6VTs8Ri&sz=w800" alt="HoverCraft Racing" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥇 1st Place</span>
-          <div class="ach-event">HoverCraft Racing</div>
-          <div class="ach-desc">Built and raced a functional hovercraft — 1st place in speed and stability</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1sOmkX-EL9aQIbbXlJm9Z5s-bLZCj5uFH&sz=w800" alt="Bridge IT" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥇 1st Place</span>
+            <div class="ach-event">Bridge IT</div>
+            <div class="ach-desc">Engineering innovation bridge challenge — 1st place for design and execution</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1_GxJKfooefkyydOmh8DYvFqACnM96MP3&sz=w800" alt="GreenShift Quiz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥇 1st Place</span>
-          <div class="ach-event">GreenShift Quiz</div>
-          <div class="ach-desc">Sustainability and green engineering knowledge quiz — 1st place</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=127V7Laz9NA4oZBbkyjdd5OVHu6VTs8Ri&sz=w800" alt="HoverCraft Racing" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥇 1st Place</span>
+            <div class="ach-event">HoverCraft Racing</div>
+            <div class="ach-desc">Built and raced a functional hovercraft — 1st place in speed and stability</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1T4IoTHMzytihrC6_J1Ifsr__QU3S4bcF&sz=w800" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥈 2nd Place</span>
-          <div class="ach-event">M.A.R.S Hackathon</div>
-          <div class="ach-desc">Habitat site selection and shelter design challenge — 2nd place (Team Beyonders)</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1_GxJKfooefkyydOmh8DYvFqACnM96MP3&sz=w800" alt="GreenShift Quiz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥇 1st Place</span>
+            <div class="ach-event">GreenShift Quiz</div>
+            <div class="ach-desc">Sustainability and green engineering knowledge quiz — 1st place</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1uhZWpCL6n8TM7EJpjiVWQgcoDMXtfgbv&sz=w800" alt="Short Film" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥈 2nd Place</span>
-          <div class="ach-event">Short Film Recyclathon</div>
-          <div class="ach-desc">Environmental awareness short film competition — 2nd place</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1T4IoTHMzytihrC6_J1Ifsr__QU3S4bcF&sz=w800" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥈 2nd Place</span>
+            <div class="ach-event">M.A.R.S Hackathon</div>
+            <div class="ach-desc">Habitat site selection and shelter design challenge — 2nd place (Team Beyonders)</div>
+          </div>
         </div>
-      </div>
-      <div class="ach-card">
-        <img src="https://drive.google.com/thumbnail?id=1XCG_LD6lyv5cu1O9-CEWwlD8eMuUWktH&sz=w800" alt="Lathe Wizz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="ach-card-body">
-          <span class="ach-badge">🥉 3rd Place</span>
-          <div class="ach-event">Lathe Wizz</div>
-          <div class="ach-desc">Lathe machining skill competition — 3rd place</div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1uhZWpCL6n8TM7EJpjiVWQgcoDMXtfgbv&sz=w800" alt="Short Film" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥈 2nd Place</span>
+            <div class="ach-event">Short Film Recyclathon</div>
+            <div class="ach-desc">Environmental awareness short film competition — 2nd place</div>
+          </div>
+        </div>
+        <div class="ach-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1XCG_LD6lyv5cu1O9-CEWwlD8eMuUWktH&sz=w800" alt="Lathe Wizz" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="ach-card-body">
+            <span class="ach-badge">🥉 3rd Place</span>
+            <div class="ach-event">Lathe Wizz</div>
+            <div class="ach-desc">Lathe machining skill competition — 3rd place</div>
+          </div>
         </div>
       </div>
     </div>
 
     <div class="sub-head">Course &amp; Internship</div>
-    <div class="cert-grid">
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
+    <div class="deck-wrapper">
+      <div class="deck-overlay" onclick="revealDeck('deck-2')">
+        <div class="overlay-text">Swipe / Tap to Reveal &rarr;</div>
       </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">Internship at Hyundai Motor India Ltd.</div><div class="cert-issuer">HMIL</div></div>
-      </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1E2Nz12iKLPBOYuzl8iNUbPbSYj4-d9XU&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">AutoCAD &amp; MATLAB Internship</div><div class="cert-issuer">RINEX Education</div></div>
-      </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1PHOijYZPICmDBG_wiCcBxqpuR2Ir6UU3&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">AutoCAD + Self-Paced MATLAB Course</div><div class="cert-issuer">RINEX Education</div></div>
-      </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1DiuvstyfsaGuRD39zMy0p9wmGELSKDzK&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">MATLAB Onramp Course Completion</div><div class="cert-issuer">MathWorks</div></div>
-      </div>
-      <div class="cert-card">
-        <img src="https://drive.google.com/thumbnail?id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-        <div class="cert-info"><div class="cert-title">Entrepreneurship Skills Completion</div><div class="cert-issuer">Wadhwani Foundation</div></div>
+      <div class="deck stacked" id="deck-2" onclick="revealDeck('deck-2')">
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1aAs2ZyaI1srkfSitpYZuVhNBF_oa96UB&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">CubeSats &amp; Satellites Internship</div><div class="cert-issuer">Skyline Space</div></div>
+        </div>
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1yKnhQ8U47q7PR3chLU-r68nWLH6FRSoh&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">Internship at Hyundai Motor India Ltd.</div><div class="cert-issuer">HMIL</div></div>
+        </div>
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1E2Nz12iKLPBOYuzl8iNUbPbSYj4-d9XU&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">AutoCAD &amp; MATLAB Internship</div><div class="cert-issuer">RINEX Education</div></div>
+        </div>
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1PHOijYZPICmDBG_wiCcBxqpuR2Ir6UU3&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">AutoCAD + Self-Paced MATLAB Course</div><div class="cert-issuer">RINEX Education</div></div>
+        </div>
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1DiuvstyfsaGuRD39zMy0p9wmGELSKDzK&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">MATLAB Onramp Course Completion</div><div class="cert-issuer">MathWorks</div></div>
+        </div>
+        <div class="cert-card deck-card">
+          <img src="https://drive.google.com/thumbnail?id=1DLkQOU04xIMp2Il1P4jXbRMyJuBLa0mz&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
+          <div class="cert-info"><div class="cert-title">Entrepreneurship Skills Completion</div><div class="cert-issuer">Wadhwani Foundation</div></div>
+        </div>
       </div>
     </div>
 
     <div class="sub-head">Workshops &amp; Memberships</div>
-    <div class="workshop-grid">
-      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=12aLlTAfvvVFR0A0Lyz-R9HzgrILZW_m9&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">AeroModelling Workshop</div></div>
-      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=1mJa1N8pTJGeKdOU7mAh5g3_i0_KiIOqP&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">Eco-Talk Recyclathon Participation</div></div>
-      <div class="ws-card"><img src="https://drive.google.com/thumbnail?id=1GdrSpg03HJAuY1e5gX8f1J0s3WApOMPE&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">MechGust CAD Participation</div></div>
-    </div>
-    
-    <div class="memb-card">
-      <img src="https://drive.google.com/thumbnail?id=1NQw5OSb9I2O_bKi6DdAQFtuy-V7e8DJ6&sz=w800" loading="lazy" onclick="openLightbox(this.src)">
-      <div class="memb-card-text">ISHRAE Student Membership</div>
+    <div class="deck-wrapper">
+      <div class="deck-overlay" onclick="revealDeck('deck-3')">
+        <div class="overlay-text">Swipe / Tap to Reveal &rarr;</div>
+      </div>
+      <div class="deck stacked" id="deck-3" onclick="revealDeck('deck-3')">
+        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=12aLlTAfvvVFR0A0Lyz-R9HzgrILZW_m9&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">AeroModelling Workshop</div></div>
+        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=1mJa1N8pTJGeKdOU7mAh5g3_i0_KiIOqP&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">Eco-Talk Recyclathon Participation</div></div>
+        <div class="ws-card deck-card"><img src="https://drive.google.com/thumbnail?id=1GdrSpg03HJAuY1e5gX8f1J0s3WApOMPE&sz=w800" loading="lazy" onclick="openLightbox(this.src)"><div class="ws-card-body">MechGust CAD Participation</div></div>
+        
+        <div class="memb-card deck-card" style="display:block;">
+          <img src="https://drive.google.com/thumbnail?id=1NQw5OSb9I2O_bKi6DdAQFtuy-V7e8DJ6&sz=w800" loading="lazy" onclick="openLightbox(this.src)" style="width:100%; height:auto;">
+          <div class="memb-card-text" style="text-align:center;">ISHRAE Student Membership</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1084,9 +1105,31 @@ filterBtns2.forEach(btn => {
 });
 
 setupViewMore('.proj-grid', '.proj-card', 3, 'projects');
-setupViewMore('.ach-grid', '.ach-card', 1, 'certs');
-setupViewMore('.cert-grid', '.cert-card', 1, 'certs');
-setupViewMore('.workshop-grid', '.ws-card', 1, 'certs');
+
+function revealDeck(id) {
+  const deck = document.getElementById(id);
+  const overlay = deck.previousElementSibling;
+  if(deck.classList.contains('stacked')) {
+    deck.classList.remove('stacked');
+    if(overlay) {
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+    }
+  }
+}
+
+// Swipe support for decks
+let touchStartX = 0;
+document.querySelectorAll('.deck-overlay, .deck.stacked').forEach(el => {
+  el.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+  el.addEventListener('touchend', e => {
+    let touchEndX = e.changedTouches[0].screenX;
+    if (Math.abs(touchStartX - touchEndX) > 30) {
+      const id = el.id.startsWith('deck') ? el.id : el.nextElementSibling.id;
+      revealDeck(id);
+    }
+  }, {passive: true});
+});
 
 function sendMessage() {
   const text = encodeURIComponent(document.getElementById('msgText').value);
