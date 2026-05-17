@@ -30,6 +30,25 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
+.has-dropdown{position:relative}
+.drop-icon{font-size:0.6rem;margin-left:0.2rem;display:inline-block;transition:transform 0.2s}
+.dropdown{position:absolute;top:100%;left:0;background:var(--card);border:1px solid var(--line);list-style:none;padding:0.5rem 0;border-radius:4px;display:flex;flex-direction:column;min-width:180px;opacity:0;pointer-events:none;transform:translateY(10px);transition:all 0.2s}
+.has-dropdown:hover .dropdown{opacity:1;pointer-events:all;transform:translateY(0)}
+.dropdown li{margin:0}
+.dropdown a{display:block;padding:0.6rem 1rem;text-transform:none;font-size:0.75rem;color:var(--text2);font-family:var(--font);letter-spacing:0}
+.dropdown a:hover{background:rgba(255,255,255,0.05);color:var(--blue)}
+.menu-toggle{display:none;width:26px;height:18px;position:relative;cursor:pointer;z-index:1001;margin-left:1.5rem}
+.menu-bar{position:absolute;left:0;width:100%;height:2px;background:var(--text);border-radius:2px;transition:all .3s ease}
+.menu-bar.top{top:0} .menu-bar.mid{top:8px} .menu-bar.bot{top:16px}
+.tool-icon{position:absolute;width:100%;height:100%;top:-4px;left:0;opacity:0;transition:all .4s cubic-bezier(.68,-.55,.265,1.55);background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none}
+.spanner{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23c8f0ff"><path d="M21.71 20.29l-6.55-6.55A6.97 6.97 0 0 0 16 9.5a7 7 0 1 0-7 7 6.97 6.97 0 0 0 4.24-1.16l6.55 6.55a1 1 0 0 0 1.42-1.42zM4 9.5a5 5 0 0 1 8.5-3.5L9 9.5l3.5 3.5A5 5 0 0 1 4 9.5z"/></svg>');transform:rotate(-90deg) scale(0.5)}
+.screwdriver{background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f4b8a0"><path d="M19.71 4.29a3 3 0 0 0-4.24 0l-2.83 2.83a1 1 0 0 0 .15 1.56l2.12 2.12a1 1 0 0 0 1.56.15l2.83-2.83a3 3 0 0 0 0-4.24zM4.29 19.71a1 1 0 0 0 1.42 0l7.78-7.78-1.42-1.42-7.78 7.78a1 1 0 0 0 0 1.42z"/></svg>');transform:rotate(90deg) scale(0.5)}
+.menu-toggle.active .menu-bar.top{transform:translateY(8px) rotate(45deg);opacity:0}
+.menu-toggle.active .menu-bar.mid{opacity:0}
+.menu-toggle.active .menu-bar.bot{transform:translateY(-8px) rotate(-45deg);opacity:0}
+.menu-toggle.active .tool-icon{opacity:1}
+.menu-toggle.active .spanner{transform:rotate(45deg) scale(1.4)}
+.menu-toggle.active .screwdriver{transform:rotate(-45deg) scale(1.4)}
 .btn-hire{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);border:1px solid rgba(200,240,255,0.22);padding:.45rem 1rem;border-radius:2px;text-decoration:none;transition:background .2s}
 .btn-hire:hover{background:rgba(200,240,255,0.07)}
 #hero{min-height:100vh;display:flex;align-items:center;padding:0 4rem;padding-top:64px}
@@ -90,7 +109,7 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .drawer-content h3{font-size:0.85rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--blue);margin:1.5rem 0 .7rem}
 .drawer-content p,.drawer-content li{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:.5rem}
 .drawer-content ul{padding-left:1.2rem}
-#achievements{border-top:1px solid var(--line)}
+#certificates{border-top:1px solid var(--line)}
 .deck-wrapper{position:relative;margin-bottom:4rem}
 .deck-overlay{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer;border-radius:8px;transition:opacity .4s}
 .overlay-text{background:rgba(12,12,14,0.6);border:1px solid var(--blue);color:var(--blue);padding:.8rem 1.5rem;border-radius:30px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-align:center;backdrop-filter:blur(4px);animation:pulse 2s infinite;pointer-events:none}
@@ -153,7 +172,12 @@ footer{border-top:1px solid var(--line);padding:2rem 0;position:relative;z-index
 footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.08em}
 .sub-head{font-size:1rem;font-weight:600;margin-bottom:1.5rem;color:var(--text)}
 @media(max-width:900px){
-  .nav-links{display:none}
+  .menu-toggle{display:block}
+  .nav-links{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(12,12,14,0.95);backdrop-filter:blur(10px);z-index:99;padding:2rem;gap:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
+  .nav-links.active{opacity:1;pointer-events:all}
+  .has-dropdown{position:static}
+  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-left:1rem;border-left:1px solid var(--line);border-radius:0;margin-top:.5rem;display:none}
+  .has-dropdown.open .dropdown{display:flex}
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
   #hero{padding:0 2rem;padding-top:64px}
@@ -164,6 +188,15 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   .btn-hire{display:none}
   .deck-card { flex: 0 0 85vw; }
   .deck.stacked .deck-card { margin-left: -85vw; }
+  .hero-eyebrow{font-size:0.6rem;gap:0.5rem}
+  .hero-name{font-size:2.8rem !important}
+  .hero-tagline{font-size:0.75rem !important;flex-wrap:wrap;line-height:1.4}
+  .hero-sub{font-size:0.95rem}
+  .stat-num{font-size:1.4rem}
+  .stat-label{font-size:0.65rem}
+  .sec-title{font-size:1.4rem;white-space:normal;line-height:1.2}
+  .sec-num{font-size:0.6rem}
+  .sub-head{font-size:0.95rem}
 }
 
 .view-more-proj-wrap { display: flex; align-items: center; justify-content: center; margin-top: 2.5rem; position: relative; }
@@ -193,12 +226,36 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     <a href="#" class="nav-logo"><span>S2K</span> / Portfolio</a>
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#achievements">Achievements</a></li>
+      <li class="has-dropdown">
+        <a href="#projects" class="menu-drop-link">Projects <span class="drop-icon">▾</span></a>
+        <ul class="dropdown">
+          <li><a href="#projects" onclick="document.querySelector('[data-filter=academic]').click()">Academic</a></li>
+          <li><a href="#projects" onclick="document.querySelector('[data-filter=competition]').click()">Competition</a></li>
+          <li><a href="#projects" onclick="document.querySelector('[data-filter=internship]').click()">Internship</a></li>
+          <li><a href="#projects" onclick="document.querySelector('[data-filter=hobby]').click()">Hobby / Innovation</a></li>
+        </ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#certificates" class="menu-drop-link">Certificates <span class="drop-icon">▾</span></a>
+        <ul class="dropdown">
+          <li><a href="#certificates" onclick="document.getElementById('deck-1').scrollIntoView({behavior:'smooth'})">Competition Wins</a></li>
+          <li><a href="#certificates" onclick="document.getElementById('deck-2').scrollIntoView({behavior:'smooth'})">Course &amp; Internship</a></li>
+          <li><a href="#certificates" onclick="document.getElementById('deck-3').scrollIntoView({behavior:'smooth'})">Workshops &amp; Memberships</a></li>
+        </ul>
+      </li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="btn-hire">Hire Me</a>
+    <div style="display:flex;align-items:center;">
+      <a href="#contact" class="btn-hire">Hire Me</a>
+      <div class="menu-toggle" id="menuToggle">
+        <div class="menu-bar top"></div>
+        <div class="menu-bar mid"></div>
+        <div class="menu-bar bot"></div>
+        <div class="tool-icon spanner"></div>
+        <div class="tool-icon screwdriver"></div>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -206,7 +263,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   <div class="hero-inner">
     <div class="hero-eyebrow">Mechanical Engineer &middot; Chennai, India</div>
     <div class="hero-name" style="white-space: nowrap;">SATHICK A.S</div>
-    <div style="display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Driven by Analysis, Powered by Innovations<div style="display:block;width:32px;height:1px;background:var(--blue);"></div></div>
+    <div class="hero-tagline" style="display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Driven by Analysis, Powered by Innovations<div style="display:block;width:32px;height:1px;background:var(--blue);"></div></div>
     <div class="hero-sub">Precision &middot; Design Engineer &middot; Thermal &amp; Flow Enthusiast</div>
     <p class="hero-bio">"Curious Mechanical Engineer driven by precision, mastering flows, thermal systems, and design thinking to craft innovative solutions across multidisciplinary engineering fields."</p>
     <div class="hero-ctas">
@@ -391,11 +448,11 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     </div>
   </div>
 </section>
-<section id="achievements" class="reveal">
+<section id="certificates" class="reveal">
   <div class="wrap">
     <div class="sec-header">
       <span class="sec-num">03 /</span>
-      <span class="sec-title">Achievements &amp; Certificates</span>
+      <span class="sec-title">Certificates &amp; Achievements</span>
       <div class="sec-line"></div>
     </div>
     
@@ -1164,6 +1221,35 @@ function sendMessage() {
     window.open(`mailto:iamsadhik2005@gmail.com?subject=Hello from Portfolio&body=${text}`);
   }
 }
+
+// Mobile Menu Logic
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.querySelector('.nav-links');
+
+if(menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+}
+
+document.querySelectorAll('.menu-drop-link').forEach(link => {
+  link.addEventListener('click', e => {
+    if(window.innerWidth <= 900) {
+      e.preventDefault();
+      link.parentElement.classList.toggle('open');
+    }
+  });
+});
+
+document.querySelectorAll('.nav-links a:not(.menu-drop-link)').forEach(link => {
+  link.addEventListener('click', () => {
+    if(window.innerWidth <= 900) {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    }
+  });
+});
 </script>
 </body>
 </html>
