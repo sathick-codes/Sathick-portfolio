@@ -186,8 +186,9 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
   #hero{padding-top:20px}
   .proj-grid{grid-template-columns:1fr}
   .btn-hire{display:none}
-  .deck-card { flex: 0 0 85vw; }
-  .deck.stacked .deck-card { margin-left: -85vw; }
+  .deck { gap: 1rem; }
+  .deck-card { flex: 0 0 72vw; }
+  .deck.stacked .deck-card { margin-left: -72vw; }
   .hero-eyebrow{font-size:0.6rem;gap:0.5rem}
   .hero-name{font-size:2.6rem !important}
   .hero-tagline{font-size:0.65rem !important;white-space:nowrap;letter-spacing:0.02em !important;width:100%}
@@ -224,7 +225,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 
 <nav>
   <div class="nav-inner wrap">
-    <a href="#" class="nav-logo"><span>S2K</span> / Portfolio</a>
+    <a href="#" class="nav-logo"><span>S2K's</span> Portfolio</a>
     <ul class="nav-links">
       <li><a href="#skills">Skills</a></li>
       <li class="has-dropdown">
@@ -336,7 +337,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     
     <div class="proj-grid">
       <div class="proj-card" data-cat="competition" onclick="openDrawer('proj0')">
-        <img src="https://iili.io/BpLIkkN.jpg" alt="M.A.R.S Hackathon" loading="lazy">
+        <img src="https://iili.io/BpLTH4j.png" alt="M.A.R.S Hackathon" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Competition &middot; 2nd Place 🥈</div>
           <h3 class="proj-title">M.A.R.S. Challenge - Site Selection and Shelter Design</h3>
@@ -356,6 +357,19 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <p class="proj-desc">Designed, fabricated, and analyzed a physical prototype of a Tesla Bladeless Turbine to understand boundary layer effect and fluid-rotor adhesion.</p>
           <div class="proj-tags">
             <span class="proj-tag">Fabrication</span><span class="proj-tag">Prototyping</span><span class="proj-tag">Testing</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="proj-card" data-cat="internship" onclick="openDrawer('proj7')">
+        <img src="https://iili.io/BpLIbj9.jpg" alt="Internship HMIL" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Internship</div>
+          <h3 class="proj-title">Ergonomic and Process Optimisation<br>@ HMIL</h3>
+          <p class="proj-desc">Hands-on automotive manufacturing experience, analyzing assembly line efficiency and operational workflow at the HMIL facility.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Automotive</span><span class="proj-tag">Manufacturing</span><span class="proj-tag">Analysis</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -408,19 +422,6 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <p class="proj-desc">Developed a comprehensive business strategy for ergonomic and comfortable daily utility products designed for modern lifestyles.</p>
           <div class="proj-tags">
             <span class="proj-tag">Business Model</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Entrepreneurship</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <div class="proj-card" data-cat="internship" onclick="openDrawer('proj7')">
-        <img src="https://iili.io/BpLIbj9.jpg" alt="Internship HMIL" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Internship</div>
-          <h3 class="proj-title">Ergonomic and Process Optimisation @ HMIL</h3>
-          <p class="proj-desc">Hands-on automotive manufacturing experience, analyzing assembly line efficiency and operational workflow at the HMIL facility.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Automotive</span><span class="proj-tag">Manufacturing</span><span class="proj-tag">Analysis</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -484,7 +485,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           </div>
         </div>
         <div class="ach-card deck-card">
-          <img src="https://lh3.googleusercontent.com/d/1zaVdkcfQu7SrxGBto3n7mWdK-jbTNQu6" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
+          <img src="https://iili.io/BpLIldQ.jpg" alt="M.A.R.S Hackathon" class="ach-img" loading="lazy" onclick="openLightbox(this.src)">
           <div class="ach-card-body">
             <span class="ach-badge">🥈 2nd Place</span>
             <div class="ach-event">M.A.R.S Hackathon</div>
@@ -684,7 +685,7 @@ const projects = {
       <h2>M.A.R.S. Challenge - Site Selection and Shelter Design</h2>
       <h3>Overview</h3>
       <p>Participated in the M.A.R.S (Mechanical Aerospace Robotics Systems) Hackathon — a competitive event requiring teams to develop solutions for habitat site selection and shelter design on the lunar/Mars surface. The team "Beyonders" secured 2nd place.</p>
-      <img src="https://iili.io/BpLIkkN.jpg" alt="Space">
+      <img src="https://iili.io/BpLTH4j.png" alt="Space">
       <h3>Technical Work</h3>
       <ul>
         <li>Analysed terrain and site conditions for optimal habitat placement using DTM data.</li>
@@ -694,7 +695,7 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Team Beyonders' Phase 1 submission was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
-      <img src="https://iili.io/BpLTH4j.png" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLIkkN.jpg" alt="Detail" style="margin-top:1.5rem;">
       <img src="https://iili.io/BpLT9Eb.jpg" alt="Detail" style="margin-top:1.5rem;">
       <img src="https://iili.io/BpLIldQ.jpg" alt="Detail" style="margin-top:1.5rem;">
     `
@@ -715,6 +716,7 @@ const projects = {
       <h3>Testing and Efficiency</h3>
       <p>Conducted rigorous speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations of boundary layer principles.</p>
       <img src="https://iili.io/BpLTnCg.jpg" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLTI3v.png" alt="Detail" style="margin-top:1.5rem;">
     `
   },
   proj2: {
@@ -733,7 +735,6 @@ const projects = {
       </ul>
       <h3>Technical Analysis</h3>
       <p>Evaluated aerodynamic efficiency and power output metrics based on standard fluid mechanics formulas. Explored methods to optimize torque generation under varying wind load conditions, bridging theoretical physics with mechanical design.</p>
-      <img src="https://iili.io/BpLTI3v.png" alt="Detail" style="margin-top:1.5rem;">
       <img src="https://iili.io/BpLIodl.jpg" alt="Detail" style="margin-top:1.5rem;">
     `
   },
@@ -797,7 +798,7 @@ const projects = {
   proj7: {
     cat: 'Internship &middot; HMIL',
     content: `
-      <h2>Ergonomic and Process Optimisation @ HMIL</h2>
+      <h2>Ergonomic and Process Optimisation<br>@ HMIL</h2>
       <h3>Overview</h3>
       <p>A comprehensive industrial internship at Hyundai Motor India Limited (HMIL) Assembly Shop, gaining hands-on exposure to high-volume automotive manufacturing, assembly line efficiency, and operational workflows.</p>
       <img src="https://iili.io/BpLIbj9.jpg" alt="Manufacturing">
