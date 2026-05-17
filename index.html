@@ -38,8 +38,8 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .dropdown a{display:block;padding:0.6rem 1rem;text-transform:none;font-size:0.75rem;color:var(--text2);font-family:var(--font);letter-spacing:0}
 .dropdown a:hover{background:rgba(255,255,255,0.05);color:var(--blue)}
 .menu-toggle{display:none;position:relative;cursor:pointer;z-index:1001;margin-left:1.5rem}
-.menu-gear{font-size:1.6rem;color:var(--text);line-height:1;display:inline-block;transition:transform .4s cubic-bezier(.4,0,.2,1), color .4s}
-.menu-toggle.active .menu-gear{transform:rotate(180deg) scale(1.1);color:var(--blue)}
+.menu-gears{display:flex;align-items:center;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.menu-toggle.active .menu-gears{transform:rotate(180deg) scale(1.1)}
 .btn-hire{font-family:var(--mono);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--blue);border:1px solid rgba(200,240,255,0.22);padding:.45rem 1rem;border-radius:2px;text-decoration:none;transition:background .2s}
 .btn-hire:hover{background:rgba(200,240,255,0.07)}
 #hero{min-height:100vh;display:flex;align-items:center;padding:0 4rem;padding-top:64px}
@@ -162,7 +162,22 @@ footer{border-top:1px solid var(--line);padding:2rem 0;position:relative;z-index
 .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-spacing:0.08em}
 .sub-head{font-size:1rem;font-weight:600;margin-bottom:1.5rem;color:var(--text)}
-@media(max-width:900px){\n  .menu-toggle{display:block; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index:1000; position:relative;}\n  .nav-links{display:flex;flex-direction:column;align-items:flex-end;text-align:right;position:fixed;top:64px;right:0;width:70%;bottom:0;background:#050505 !important;z-index:999;padding:2rem;gap:1rem;transform:translateX(100%);pointer-events:none;transition:transform 0.4s cubic-bezier(.4,0,.2,1);border-left:1px solid #333;box-shadow:-10px 0 30px rgba(0,0,0,0.8);}\n  .nav-links > a, .nav-links .has-dropdown > a { border-bottom: 1px solid #222; padding-bottom: 1rem; width: 100%; display: block; }\n  .nav-links.active{transform:translateX(0);pointer-events:all}\n  #cursorDot{display:none !important}\n  .has-dropdown{position:static; width:100%;}\n  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:transparent;padding-right:0;border-right:none;border-left:none;border-radius:0;margin-top:0.5rem;display:none;align-items:flex-end;text-align:right}\n  .dropdown a { padding: 0.5rem 0; font-size: 0.85rem; color: var(--text2); }\n  .has-dropdown.open .dropdown{display:flex;flex-direction:column}\n
+@media(max-width:900px){
+  .menu-toggle{display:block; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index:1001; position:relative;}
+  .nav-links{display:flex;flex-direction:column;align-items:flex-end;text-align:right;position:absolute;top:64px;left:0;right:0;background:rgba(12,12,14,0.96) !important;backdrop-filter:blur(24px);border-bottom:1px solid var(--line);z-index:999;padding:2rem;gap:1.2rem;transform:translateY(-150%);opacity:0;pointer-events:none;transition:transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;box-shadow:0 20px 40px rgba(0,0,0,0.8);}
+  .nav-links.active{transform:translateY(0);opacity:1;pointer-events:all;}
+  .nav-links li { width: 100%; list-style: none; }
+  .nav-links > li > a, .nav-links .has-dropdown > a { border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 0.8rem; width: 100%; display: block; font-size: 0.85rem; color: var(--text); font-weight: 500; }
+  #cursorDot{display:none !important;}
+  .has-dropdown{position:relative; width:100%;}
+  .dropdown{position:static;opacity:1;pointer-events:all;transform:none;border:none;background:rgba(255,255,255,0.02);padding:0.5rem 1rem;border-radius:4px;margin-top:0.5rem;display:none;align-items:flex-end;text-align:right; width:100%;}
+  .dropdown li { width: 100%; }
+  .dropdown a { padding: 0.6rem 0; font-size: 0.8rem; color: var(--text2); border-bottom: 1px solid rgba(255,255,255,0.03); display: block; }
+  .dropdown li:last-child a { border-bottom: none; }
+  .has-dropdown.open .dropdown{display:flex;flex-direction:column;}
+  .has-dropdown.open > a { color: var(--blue); }
+  .has-dropdown.open .drop-icon { transform: rotate(180deg); display: inline-block; }
+
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   #skills .grid,.exp-grid,.contact-grid{grid-template-columns:1fr}
   #hero{padding:0 2rem;padding-top:64px}
@@ -235,7 +250,10 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     <div style="display:flex;align-items:center;">
       <a href="#contact" class="btn-hire">Hire Me</a>
       <div class="menu-toggle" id="menuToggle">
-        <span class="menu-gear">⚙</span>
+        <div class="menu-gears" style="display:flex; align-items:center;">
+          <span class="gear1" style="color: var(--blue);">⚙</span>
+          <span class="gear2">⚙</span>
+        </div>
       </div>
     </div>
   </div>
@@ -255,7 +273,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     <div class="hero-stats" id="statsRow">
       <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA<br>till sem-5</div></div>
       <div><div class="stat-num"><span class="counter" data-target="3" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="8" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="7" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
       <div><div class="stat-num"><span class="counter" data-target="18" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
     </div>
   </div>
@@ -383,7 +401,7 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       </div>
 
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj6')">
-        <img src="https://iili.io/BpLIvpI.jpg" alt="ComfEasy - Ergonomic Modular Massager" loading="lazy">
+        <img src="https://iili.io/BpQOa94.jpg" alt="ComfEasy - Ergonomic Modular Massager" loading="lazy">
         <div class="proj-body">
           <div class="proj-cat">Academic &middot; Business Model</div>
           <h3 class="proj-title">ComfEasy - Ergonomic Modular Massager</h3>
@@ -676,7 +694,10 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Team Beyonders' Phase 1 submission was selected as a finalist. The design demonstrated strong technical depth in terrain adaptation, structural integrity and systems integration — earning 2nd place at the hackathon.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/14kixiQ1IOq9Y-kLsGZLIMYENQZhyKVB8" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://lh3.googleusercontent.com/d/1oZug9_fao3xkFABU3jJ1X760U7dsKwCK" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLTH4j.png" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://iili.io/BpLT9Eb.jpg" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLTH4j.png" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLT9Eb.jpg" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLIldQ.jpg" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   proj1: {
     cat: 'Hobby / Innovation',
@@ -693,12 +714,13 @@ const projects = {
       </ul>
       <h3>Testing and Efficiency</h3>
       <p>Conducted rigorous speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations of boundary layer principles.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1_5JdRQ0SABQ5NlgMBz-ea6lohPD7ktna" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLTnCg.jpg" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLTnCg.jpg" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   proj2: {
     cat: 'Academic Project &middot; PBL (MEDX37)',
     content: `
-      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation Generation</h2>
+      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation</h2>
       <h3>Concept & Analysis</h3>
       <p>An academic research project (MEDX37) exploring the feasibility of using Nikola Tesla's bladeless turbine design for domestic wind energy generation. The study analyzes how wind energy can be harnessed through aerodynamic flow and vortex shedding instead of traditional blades.</p>
       <img src="https://iili.io/BpLIDT7.jpg" alt="Turbine">
@@ -711,7 +733,9 @@ const projects = {
       </ul>
       <h3>Technical Analysis</h3>
       <p>Evaluated aerodynamic efficiency and power output metrics based on standard fluid mechanics formulas. Explored methods to optimize torque generation under varying wind load conditions, bridging theoretical physics with mechanical design.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1234XFm9K-jDe5CUj7XNkuZYONVVjT3Uq" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLTI3v.png" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLTI3v.png" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLIodl.jpg" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   proj3: {
     cat: 'Competition',
@@ -729,7 +753,8 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Successfully delivered a well-structured technical proposal demonstrating strong analytical thinking, structured problem framing, and team-based engineering communication.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1ylC_H_uvafs057VxlkleXQSO5qSbaSAC" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLIO2R.jpg" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLIO2R.jpg" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   
   proj5: {
@@ -747,7 +772,9 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Produced a structured business case that effectively translates complex operational and technical logistics into a viable commercial venture.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1SqsnlkPYSGXIFOybiTMYUxI64jgD2fss4" alt="Detail" style="margin-top:1.5rem;">\n      <img src="https://lh3.googleusercontent.com/d/1p7J4fY7xlaCeJex2RvubH61axl_el3Mx" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLTFyB.png" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLTFyB.png" alt="Detail" style="margin-top:1.5rem;">
+      <img src="https://iili.io/BpLIEmP.jpg" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   proj6: {
     cat: 'Academic &middot; Business Model',
@@ -755,7 +782,7 @@ const projects = {
       <h2>ComfEasy - Ergonomic Modular Massager Business Project</h2>
       <h3>Overview</h3>
       <p>Developed during the Wadhwani Foundation Entrepreneurship Skills course, ComfEasy - Ergonomic Modular Massager is a business-driven ergonomic project focused on designing and marketing products that alleviate physical strain in modern lifestyles.</p>
-      <img src="https://iili.io/BpLIvpI.jpg" alt="ComfEasy - Ergonomic Modular Massager">
+      <img src="https://iili.io/BpQOa94.jpg" alt="ComfEasy - Ergonomic Modular Massager">
       <h3>Key Contributions</h3>
       <ul>
         <li>Ergonomic product design conceptualization targeting workplace and lifestyle comfort.</li>
@@ -764,7 +791,8 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Demonstrated the ability to merge mechanical design principles with actionable entrepreneurial strategies, bridging the gap between human comfort and commercial viability.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1v7FXkAUqlBxSR7wmJQ0bCPkWt74G9avC" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLIjEJ.png" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLIjEJ.png" alt="Detail" style="margin-top:1.5rem;">
+    `
   },
   proj7: {
     cat: 'Internship &middot; HMIL',
@@ -782,7 +810,8 @@ const projects = {
       </ul>
       <h3>Outcome</h3>
       <p>Acquired practical, shop-floor experience linking academic engineering principles to large-scale, automated industrial production processes.</p>
-    \n      <img src="https://lh3.googleusercontent.com/d/1JzVe5du8qopOL2brRH03kBUwCX3SdPg1" alt="Detail" style="margin-top:1.5rem;">\n    \n      <img src="https://iili.io/BpLIRLu.png" alt="Detail" style="margin-top:1.5rem;">\n    `
+      <img src="https://iili.io/BpLIRLu.png" alt="Detail" style="margin-top:1.5rem;">
+    `
   }
 };
 
@@ -1132,7 +1161,8 @@ const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.querySelector('.nav-links');
 
 if(menuToggle) {
-  menuToggle.addEventListener('click', () => {
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     menuToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
   });
@@ -1142,6 +1172,7 @@ document.querySelectorAll('.menu-drop-link').forEach(link => {
   link.addEventListener('click', e => {
     if(window.innerWidth <= 900) {
       e.preventDefault();
+      e.stopPropagation();
       link.parentElement.classList.toggle('open');
     }
   });
@@ -1152,9 +1183,28 @@ document.querySelectorAll('.nav-links a:not(.menu-drop-link)').forEach(link => {
     if(window.innerWidth <= 900) {
       menuToggle.classList.remove('active');
       navLinks.classList.remove('active');
+      document.querySelectorAll('.has-dropdown').forEach(dd => dd.classList.remove('open'));
     }
   });
 });
+
+document.addEventListener('click', e => {
+  if(window.innerWidth <= 900 && navLinks.classList.contains('active')) {
+    if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+      document.querySelectorAll('.has-dropdown').forEach(dd => dd.classList.remove('open'));
+    }
+  }
+});
+
+window.addEventListener('scroll', () => {
+  if(window.innerWidth <= 900 && navLinks.classList.contains('active')) {
+    menuToggle.classList.remove('active');
+    navLinks.classList.remove('active');
+    document.querySelectorAll('.has-dropdown').forEach(dd => dd.classList.remove('open'));
+  }
+}, { passive: true });
 </script>
 </body>
 </html>
