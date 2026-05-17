@@ -209,9 +209,9 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     </div>
     <div class="hero-stats" id="statsRow">
       <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA; till sem 5</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span>+</div><div class="stat-label">Internships</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="5" data-decimals="0">0</span>+</div><div class="stat-label">Projects</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span>+</div><div class="stat-label">Certificates</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="8" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
     </div>
   </div>
 </section>
@@ -267,11 +267,39 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <button class="filter-btn" data-filter="competition">Competition</button>
       <button class="filter-btn" data-filter="internship">Internship</button>
       <button class="filter-btn" data-filter="hobby">Hobby / Innovation</button>
-      <button class="filter-btn" data-filter="academic">Academic (Business + PBL)</button>
+      <button class="filter-btn" data-filter="academic">Academic</button>
     </div>
 
     <div class="proj-grid">
-      <!-- Proj 1 -->
+      <!-- 1. Proj 6: MARS -->
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
+        <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=700&q=80" alt="Mars Rover" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
+          <h3 class="proj-title">M.A.R.S Hackathon (Habitat &amp; Shelter Design)</h3>
+          <p class="proj-desc">Participated in a habitat site selection and shelter design challenge for the lunar/Mars surface, securing 2nd place with Team Beyonders.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Habitat Design</span><span class="proj-tag">Site Selection</span><span class="proj-tag">Shelter Design</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- 2. Proj 7: SIH -->
+      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj7')">
+        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80" alt="Smart Grid" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Competing Project &middot; SIH 2025</div>
+          <h3 class="proj-title">SIH 2025 — Voltex Smart Grid Idea</h3>
+          <p class="proj-desc">Presented "Voltex" — a smart energy grid management concept — covering renewable integration, demand response, and real-time load balancing.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Smart Grid</span><span class="proj-tag">Energy Management</span><span class="proj-tag">Innovation</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- 3. Proj 1: Smart Door -->
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj1')">
         <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Smart Door" loading="lazy">
         <div class="proj-body">
@@ -279,42 +307,13 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <h3 class="proj-title">Smart Automatic Door Closer &amp; Locker System</h3>
           <p class="proj-desc">Microcontroller-based door automation enabling hands-free operation via push-button or mobile command — designed for accessibility in compact environments.</p>
           <div class="proj-tags">
-            <span class="proj-tag">Arduino Uno</span><span class="proj-tag">ESP32</span><span class="proj-tag">Servo Motor</span><span class="proj-tag">Bluetooth</span><span class="proj-tag">Reed Switch</span><span class="proj-tag">Mechatronics</span>
+            <span class="proj-tag">Arduino Uno</span><span class="proj-tag">ESP32</span><span class="proj-tag">Servo Motor</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
       </div>
 
-      <!-- Proj 3 -->
-      <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj3')">
-        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Wind Turbine" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Hobby Innovation &middot; Renewable Energy</div>
-          <h3 class="proj-title">Bladeless Wind Turbine Prototype</h3>
-          <p class="proj-desc">Tesla-inspired prototype using vortex shedding and drag force — built from repurposed materials for domestic rooftop energy generation.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Vortex Shedding</span><span class="proj-tag">Drag Force</span><span class="proj-tag">Fluid Dynamics</span><span class="proj-tag">Tesla Turbine</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- Proj 6 -->
-      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj6')">
-        <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=700&q=80" alt="Mars Rover" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Competing Project &middot; 2nd Place 🥈</div>
-          <h3 class="proj-title">M.A.R.S Hackathon (Habitat &amp; Shelter Design)</h3>
-          <p class="proj-desc">Participated in a habitat site selection and shelter design challenge for the lunar/Mars surface, securing 2nd place with Team Beyonders.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Habitat Design</span><span class="proj-tag">Site Selection</span><span class="proj-tag">Shelter Design</span><span class="proj-tag">Space Architecture</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
-
-      <!-- Proj 7 -->
-      <!-- Proj 0 -->
+      <!-- 4. Proj 0: Comfeasy -->
       <div class="proj-card" data-cat="academic" onclick="openDrawer('proj0')">
         <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=700&q=80" alt="Comfeasy Ergonomic" loading="lazy">
         <div class="proj-body">
@@ -327,21 +326,8 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <span class="proj-arrow">↗</span>
         </div>
       </div>
-      <!-- Proj 4 -->
-      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj4')">
-        <img src="https://images.unsplash.com/photo-1617788138017-80ad40651399?w=700&q=80" alt="RideFar" loading="lazy">
-        <div class="proj-body">
-          <div class="proj-cat">Academic Project &middot; Business</div>
-          <h3 class="proj-title">RideFar — Fuel Monitor Project</h3>
-          <p class="proj-desc">Developed during the Wadhwani Foundation Entrepreneurship course, acted as a co-partner assisting in developing a fuel monitoring solution.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">EV Mobility</span><span class="proj-tag">Business Model</span><span class="proj-tag">Pitch Deck</span><span class="proj-tag">Go-to-Market</span>
-          </div>
-          <span class="proj-arrow">↗</span>
-        </div>
-      </div>
 
-      <!-- Proj 5 -->
+      <!-- 5. Proj 5: HMIL -->
       <div class="proj-card" data-cat="internship" onclick="openDrawer('proj5')">
         <img src="https://images.unsplash.com/photo-1565043666747-69f6646db940?w=700&q=80" alt="Hyundai HMIL" loading="lazy">
         <div class="proj-body">
@@ -349,21 +335,49 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
           <h3 class="proj-title">Worker Ergonomics Improvement at HMIL</h3>
           <p class="proj-desc">Applied Six Sigma DMAIC and REBA assessment tool at HMIL Assembly Shop #2 to identify and reduce musculoskeletal fatigue.</p>
           <div class="proj-tags">
-            <span class="proj-tag">Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">REBA Tool</span><span class="proj-tag">Ergonomics</span><span class="proj-tag">Biomechanics</span>
+            <span class="proj-tag">Six Sigma</span><span class="proj-tag">DMAIC</span><span class="proj-tag">REBA Tool</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
       </div>
 
-      <!-- Proj 7 -->
-      <div class="proj-card" data-cat="competition" onclick="openDrawer('proj7')">
-        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=700&q=80" alt="Smart Grid" loading="lazy">
+      <!-- 6. Proj 3: Tesla Turbine Academic (MEDX37) -->
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj3')">
+        <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Wind Turbine" loading="lazy">
         <div class="proj-body">
-          <div class="proj-cat">Competing Project &middot; SIH 2025</div>
-          <h3 class="proj-title">SIH 2025 — Voltex Smart Grid Idea</h3>
-          <p class="proj-desc">Presented "Voltex" — a smart energy grid management concept — covering renewable integration, demand response, and real-time load balancing.</p>
+          <div class="proj-cat">Academic Project &middot; MEDX37</div>
+          <h3 class="proj-title">Usage of Tesla Turbine for Domestic Wind Energy Generation</h3>
+          <p class="proj-desc">Academic project exploring the feasibility of a bladeless turbine design using vortex shedding and drag force for domestic energy generation.</p>
           <div class="proj-tags">
-            <span class="proj-tag">Smart Grid</span><span class="proj-tag">Energy Management</span><span class="proj-tag">SIH 2025</span><span class="proj-tag">Innovation</span>
+            <span class="proj-tag">Tesla Turbine</span><span class="proj-tag">Renewable Energy</span><span class="proj-tag">MEDX37</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- 7. Proj 8: Tesla Turbine Hobby -->
+      <div class="proj-card" data-cat="hobby" onclick="openDrawer('proj8')">
+        <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=700&q=80" alt="Fabrication Turbine" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Hobby / Innovation</div>
+          <h3 class="proj-title">Fabricate and Analysis of Efficiency of Tesla Bladeless Turbine</h3>
+          <p class="proj-desc">A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">Fabrication</span><span class="proj-tag">Efficiency Analysis</span><span class="proj-tag">Tesla Turbine</span>
+          </div>
+          <span class="proj-arrow">↗</span>
+        </div>
+      </div>
+
+      <!-- 8. Proj 4: RideFar -->
+      <div class="proj-card" data-cat="academic" onclick="openDrawer('proj4')">
+        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=700&q=80" alt="RideFar" loading="lazy">
+        <div class="proj-body">
+          <div class="proj-cat">Academic Project &middot; Business</div>
+          <h3 class="proj-title">RideFar — Fuel Monitor Project</h3>
+          <p class="proj-desc">Developed during the Wadhwani Foundation Entrepreneurship course, acted as a co-partner assisting in developing a fuel monitoring solution.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">EV Mobility</span><span class="proj-tag">Business Model</span><span class="proj-tag">Pitch Deck</span>
           </div>
           <span class="proj-arrow">↗</span>
         </div>
@@ -670,29 +684,38 @@ const projects = {
     `
   },
   proj3: {
-    cat: 'Hobby Innovation &middot; Renewable Energy &middot; MEDX37',
+    cat: 'Academic Project &middot; MEDX37',
     content: `
-      <h2>Bladeless Wind Turbine Prototype</h2>
-      <h3>Concept & Inspiration</h3>
-      <p>Inspired by Nikola Tesla's bladeless turbine design, this prototype harnesses wind energy through aerodynamic flow and vortex shedding. Built using a "best out of waste" approach — repurposed CDs, foam sheet casing, plastic shaft — making it low-cost and adaptable for domestic rooftop installation.</p>
-      <img src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=700&q=80" alt="Turbine">
+      <h2>Usage of Tesla Turbine for Domestic Wind Energy Generation</h2>
+      <h3>Concept & Analysis</h3>
+      <p>An academic research project (MEDX37) exploring the feasibility of using Nikola Tesla's bladeless turbine design for domestic wind energy generation. The study analyzes how wind energy can be harnessed through aerodynamic flow and vortex shedding instead of traditional blades.</p>
+      <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=700&q=80" alt="Turbine">
       <h3>Design Features</h3>
       <ul>
-        <li>Enlarged inlet port: captures low-velocity urban winds more efficiently</li>
-        <li>Aerodynamic shell: auto-aligns with wind direction for maximum intake</li>
-        <li>5 repurposed CD discs: interact with wind forces via drag and vortex shedding &rarr; converted to electricity via coil-magnet induction</li>
-        <li>Modular design: 10–20 units in-line on a terrace can produce 75–150W (enough for lighting or device charging)</li>
+        <li>Enlarged inlet port: designed to capture low-velocity urban winds more efficiently.</li>
+        <li>Aerodynamic shell: auto-aligns with wind direction for maximum intake.</li>
+        <li>Discs array: interacts with wind forces via drag and vortex shedding &rarr; converted to electricity via coil-magnet induction.</li>
+        <li>Modular design: 10–20 units in-line on a terrace can produce 75–150W (enough for lighting or device charging).</li>
       </ul>
       <h3>Technical Analysis</h3>
-      <p>Power formula: P = &frac12;&rho;Av&sup3;. At v = 5 m/s with 0.5 m&sup2; inlet area, meaningful supplemental power is achievable per unit. Practical efficiency: ~20–30% (Tesla theorised 89–95% at 10k–50k RPM — impractical at domestic breeze speeds). Testing ongoing with LED/battery output measurement.</p>
-      <img src="https://images.unsplash.com/photo-1524522173746-f628baad3644?w=700&q=80" alt="Energy">
-      <h3>Future Development</h3>
+      <p>Power formula: P = &frac12;&rho;Av&sup3;. At v = 5 m/s with 0.5 m&sup2; inlet area, meaningful supplemental power is achievable per unit. Practical efficiency: ~20–30% (Tesla theorised 89–95% at 10k–50k RPM — impractical at domestic breeze speeds).</p>
+    `
+  },
+  proj8: {
+    cat: 'Hobby Innovation &middot; Renewable Energy',
+    content: `
+      <h2>Fabricate and Analysis of Efficiency of Tesla Bladeless Turbine</h2>
+      <h3>Overview</h3>
+      <p>A personal hobby project focused on the hands-on fabrication and efficiency analysis of a Tesla bladeless turbine prototype. This project involved practical engineering, building a functional prototype from scratch, and rigorously testing its output.</p>
+      <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=700&q=80" alt="Turbine Fabrication">
+      <h3>Fabrication Process</h3>
       <ul>
-        <li>Replace CDs with 3D-printed lightweight composite discs</li>
-        <li>Use BLDC generator to minimise shaft load and kinetic losses</li>
-        <li>Weatherproof housing to prevent water ingress</li>
-        <li>Integrate with rooftop solar panels &rarr; hybrid domestic renewable system</li>
+        <li>Built using a "best out of waste" approach — repurposed materials, foam sheet casing, plastic shaft — making it low-cost.</li>
+        <li>Custom components designed for housing the generator and maintaining disc spacing.</li>
+        <li>Assembly of the internal rotor mechanism focusing on minimizing friction and kinetic losses.</li>
       </ul>
+      <h3>Testing and Efficiency</h3>
+      <p>Conducted various stress and speed tests to determine the optimal wind velocity for maximum RPM. Testing involved output measurement, verifying the real-world efficiency against theoretical calculations.</p>
     `
   },
   proj4: {
