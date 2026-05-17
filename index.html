@@ -92,8 +92,8 @@ nav{position:fixed;top:0;left:0;right:0;height:64px;background:rgba(12,12,14,0.8
 .drawer-content ul{padding-left:1.2rem}
 #achievements{border-top:1px solid var(--line)}
 .deck-wrapper{position:relative;margin-bottom:4rem}
-.deck-overlay{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;background:rgba(12,12,14,0.4);backdrop-filter:blur(3px);cursor:pointer;border-radius:8px;transition:opacity .4s}
-.overlay-text{background:rgba(200,240,255,0.1);border:1px solid var(--blue);color:var(--blue);padding:.8rem 1.5rem;border-radius:30px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-align:center;animation:pulse 2s infinite;pointer-events:none}
+.deck-overlay{position:absolute;top:0;left:0;right:0;bottom:0;z-index:20;display:flex;align-items:center;justify-content:center;background:transparent;cursor:pointer;border-radius:8px;transition:opacity .4s}
+.overlay-text{background:rgba(12,12,14,0.6);border:1px solid var(--blue);color:var(--blue);padding:.8rem 1.5rem;border-radius:30px;font-family:var(--mono);font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;text-align:center;backdrop-filter:blur(4px);animation:pulse 2s infinite;pointer-events:none}
 @keyframes pulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,240,255,.3)}70%{transform:scale(1.05);box-shadow:0 0 0 10px rgba(200,240,255,0)}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(200,240,255,0)}}
 .deck{display:flex;overflow-x:auto;overflow-y:hidden;padding:1.5rem 1rem;gap:1.5rem;scroll-snap-type:x mandatory;scrollbar-width:none}
 .deck::-webkit-scrollbar{display:none}
@@ -215,9 +215,9 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
     </div>
     <div class="hero-stats" id="statsRow">
       <div><div class="stat-num counter" data-target="9.22" data-decimals="2">0</div><div class="stat-label">CGPA; till sem 5</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="2" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="3" data-decimals="0">0</span></div><div class="stat-label">Internships</div></div>
       <div><div class="stat-num"><span class="counter" data-target="8" data-decimals="0">0</span></div><div class="stat-label">Projects</div></div>
-      <div><div class="stat-num"><span class="counter" data-target="12" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
+      <div><div class="stat-num"><span class="counter" data-target="18" data-decimals="0">0</span></div><div class="stat-label">Certificates</div></div>
     </div>
   </div>
 </section>
@@ -1130,6 +1130,26 @@ document.querySelectorAll('.deck-overlay, .deck.stacked').forEach(el => {
     }
   }, {passive: true});
 });
+
+// Auto-collapse decks when scrolled out of view
+const deckObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting && entry.boundingClientRect.top !== 0) {
+      const deck = entry.target;
+      if (!deck.classList.contains('stacked')) {
+        deck.classList.add('stacked');
+        deck.scrollTo({ left: 0, behavior: 'instant' });
+        const overlay = deck.previousElementSibling;
+        if(overlay) {
+          overlay.style.opacity = '1';
+          overlay.style.pointerEvents = 'auto';
+        }
+      }
+    }
+  });
+}, { threshold: 0 });
+
+document.querySelectorAll('.deck').forEach(deck => deckObserver.observe(deck));
 
 function sendMessage() {
   const text = encodeURIComponent(document.getElementById('msgText').value);
