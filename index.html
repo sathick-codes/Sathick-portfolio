@@ -198,9 +198,9 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
 
 <section id="hero">
   <div class="hero-inner">
-    <div style="font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 1.5rem; text-transform: uppercase;">Driven by Analysis, Powered by Innovations</div>
     <div class="hero-eyebrow">Mechanical Engineer &middot; Chennai, India</div>
     <div class="hero-name" style="white-space: nowrap;">SATHICK A.S</div>
+    <div style="display: flex; align-items: center; gap: 1rem; font-family: var(--mono); font-size: 0.85rem; color: var(--blue); letter-spacing: 0.05em; margin-top: 0.5rem; text-transform: uppercase;">Driven by Analysis, Powered by Innovations<div style="display:block;width:32px;height:1px;background:var(--blue);"></div></div>
     <div class="hero-sub">Precision &middot; Design Engineer &middot; Thermal &amp; Flow Enthusiast</div>
     <p class="hero-bio">"Curious Mechanical Engineer driven by precision, mastering flows, thermal systems, and design thinking to craft innovative solutions across multidisciplinary engineering fields."</p>
     <div class="hero-ctas">
@@ -556,7 +556,18 @@ footer span{font-family:var(--mono);font-size:0.65rem;color:var(--text3);letter-
       <div>
         <h2 class="contact-heading">Open to opportunities,<br>collaborations &amp; new challenges.</h2>
         <p class="contact-para">Whether you're exploring an internship, a research collaboration, or a challenging engineering project — I'm always interested in connecting with people building meaningful things.</p>
-        <a href="mailto:iamsadhik2005@gmail.com" class="btn-primary">Say Hello &rarr;</a>
+        <div class="msg-box" style="margin-top:2rem;">
+          <style>#msgText:focus, #msgMethod:focus { border-color: rgba(200,240,255,0.4) !important; color: var(--text) !important; }</style>
+          <textarea id="msgText" placeholder="Write a message..." style="width:100%; height:90px; background:transparent; border:1px solid var(--line); color:var(--text); padding:.8rem; border-radius:4px; font-family:var(--font); font-size:0.85rem; resize:none; margin-bottom:1rem; outline:none; transition:border-color .2s;"></textarea>
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap; margin-bottom: 2rem;">
+            <select id="msgMethod" style="background:var(--bg); border:1px solid var(--line); color:var(--text2); padding:.65rem 1rem; border-radius:4px; font-family:var(--mono); font-size:0.75rem; outline:none; cursor:none;">
+              <option value="mail">Send via Email</option>
+              <option value="whatsapp">Send via WhatsApp</option>
+            </select>
+            <button onclick="sendMessage()" class="btn-primary" style="padding:.65rem 1.5rem; font-size:0.85rem;">Send Message &rarr;</button>
+          </div>
+          <a href="https://linkedin.com/in/sathick-subhan" target="_blank" class="btn-ghost" style="display:inline-block; font-size:0.85rem;">Connect on LinkedIn &rarr;</a>
+        </div>
       </div>
       <div class="contact-links">
         <a href="mailto:iamsadhik2005@gmail.com" class="contact-link"><span class="icon">✉</span>Email &rarr; iamsadhik2005@gmail.com</a>
@@ -846,7 +857,7 @@ document.querySelectorAll('a, button, .proj-card, .ach-img, .cert-card img, .ws-
   });
 });
 
-// Scroll Reveal & Skill Bars
+// Scroll Reveal & Skill Bars & Counters
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -857,11 +868,19 @@ const observer = new IntersectionObserver((entries) => {
           bar.style.width = bar.getAttribute('data-w') + '%';
         });
       }
+      // Trigger counters when stats row comes into view
+      if(entry.target.id === 'statsRow' && !entry.target.hasAttribute('data-counted')){
+        runCounters();
+        entry.target.setAttribute('data-counted', 'true');
+      }
     }
   });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Observe the stats row
+const statsRow = document.getElementById('statsRow');
+if (statsRow) observer.observe(statsRow);
 
 // Project Filter
 const filterBtns = document.querySelectorAll('.filter-btn');
@@ -939,7 +958,7 @@ function runCounters() {
   counters.forEach(counter => {
     const target = parseFloat(counter.getAttribute('data-target'));
     const decimals = parseInt(counter.getAttribute('data-decimals'));
-    const inc = target / speed;
+    const inc = target / Math.max(speed, 50); // safety
     let count = 0;
 
     const updateCount = () => {
@@ -954,8 +973,7 @@ function runCounters() {
     updateCount();
   });
 }
-// Run once on load
-runCounters();
+// Counters will be triggered by IntersectionObserver
 
 
 // VIEW MORE LOGIC
@@ -1047,6 +1065,19 @@ setupViewMore('.ach-grid', '.ach-card', 1, 'certs');
 setupViewMore('.cert-grid', '.cert-card', 1, 'certs');
 setupViewMore('.workshop-grid', '.ws-card', 1, 'certs');
 
+function sendMessage() {
+  const text = encodeURIComponent(document.getElementById('msgText').value);
+  const method = document.getElementById('msgMethod').value;
+  if (!text) {
+    alert("Please write a message first!");
+    return;
+  }
+  if (method === 'whatsapp') {
+    window.open(`https://wa.me/916381032845?text=${text}`, '_blank');
+  } else {
+    window.open(`mailto:iamsadhik2005@gmail.com?subject=Hello from Portfolio&body=${text}`);
+  }
+}
 </script>
 </body>
 </html>
